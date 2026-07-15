@@ -169,7 +169,14 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 
 @media(max-width:900px){.grid3,.grid3b,.grid6{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.steps:before{display:none}.stats{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.grid3,.grid3b,.grid6,.stats,.fgrid{grid-template-columns:1fr}.sec{padding:80px 0}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}}
+.stat .num.pulse{animation:numpulse 1s ease-out}
+@keyframes numpulse{0%{text-shadow:0 0 0 rgba(129,140,248,0)}30%{text-shadow:0 0 26px rgba(129,140,248,.9)}100%{text-shadow:0 0 0 rgba(129,140,248,0)}}
+.marquee.rev{border-top:none;padding:16px 0}
+.marquee.rev .t{animation:scrollrev 34s linear infinite}
+.marquee.rev span{font-size:18px;-webkit-text-stroke:0;color:rgba(129,140,248,.2)}
+.marquee.rev span:after{color:rgba(129,140,248,.35)}
+@keyframes scrollrev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}.marquee.rev .t{animation:none}}
 </style>
 </head>
 <body>
@@ -218,6 +225,10 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 <div class="marquee" id="mq"><div class="t">
   <span>Salesforce</span><span>DevOps</span><span>SAP</span><span>Big Data</span><span>Artificial Intelligence</span><span>Cloud Hosting</span><span>Outsourcing</span>
   <span>Salesforce</span><span>DevOps</span><span>SAP</span><span>Big Data</span><span>Artificial Intelligence</span><span>Cloud Hosting</span><span>Outsourcing</span>
+</div></div>
+<div class="marquee rev"><div class="t">
+  <span>Consulting</span><span>Engineering</span><span>Migration</span><span>Integration</span><span>Analytics</span><span>Automation</span><span>Managed Support</span>
+  <span>Consulting</span><span>Engineering</span><span>Migration</span><span>Integration</span><span>Analytics</span><span>Automation</span><span>Managed Support</span>
 </div></div>
 
 <section class="sec" id="services">
@@ -341,13 +352,13 @@ menu.addEventListener("click",function(e){if(e.target.tagName==="A"){menu.classL
 
 /* Reveal */
 if("IntersectionObserver" in window && !R){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15,rootMargin:"0px 0px -8% 0px"});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");var eb=e.target.querySelector(".eyebrow");if(eb)scramble(eb);io.unobserve(e.target);}});},{threshold:.15,rootMargin:"0px 0px -8% 0px"});
   D.querySelectorAll(".reveal").forEach(function(el,i){el.style.transitionDelay=(i%3*0.08)+"s";io.observe(el);});
 }else D.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
 
 /* Counters */
 if("IntersectionObserver" in window){
-  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll("[data-to]").forEach(function(n){var to=+n.getAttribute("data-to"),t0=performance.now();(function tick(t){var p=Math.min(1,(t-t0)/1600);n.textContent=Math.round((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(tick);})(t0);});co.unobserve(e.target);}});},{threshold:.5});
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll("[data-to]").forEach(function(n){var to=+n.getAttribute("data-to"),t0=performance.now();(function tick(t){var p=Math.min(1,(t-t0)/1600);n.textContent=Math.round((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(tick);else if(n.parentNode)n.parentNode.classList.add("pulse");})(t0);});co.unobserve(e.target);}});},{threshold:.5});
   var st=D.getElementById("stats");if(st)co.observe(st);
 }
 
@@ -396,12 +407,34 @@ if(fine&&!R){var pl=D.getElementById("pl");addEventListener("mousemove",function
   wrap.addEventListener("pointerup",end);wrap.addEventListener("pointercancel",end);wrap.addEventListener("pointerleave",end);
 })();
 
-/* Hero particles */
-(function(){if(R)return;var cv=D.getElementById("dots");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,pts,raf,run=true;
-  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;var n=Math.min(64,Math.round(w*h/24000));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
-  function frame(){if(!run)return;ctx.clearRect(0,0,w,h);for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,6.29);ctx.fillStyle="rgba(150,170,255,.7)";ctx.fill();for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;if(d<16000){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(120,140,240,"+(.16*(1-d/16000))+")";ctx.lineWidth=1;ctx.stroke();}}}raf=requestAnimationFrame(frame);}
+/* Hero particles — cursor-reactive (repel + connect to cursor) */
+(function(){if(R)return;var cv=D.getElementById("dots");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,pts,raf,run=true,mx=-999,my=-999;
+  hero.addEventListener("mousemove",function(e){var r=hero.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+  hero.addEventListener("mouseleave",function(){mx=my=-999;});
+  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;var n=Math.min(72,Math.round(w*h/21000));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});}
+  function frame(){if(!run)return;ctx.clearRect(0,0,w,h);for(var i=0;i<pts.length;i++){var p=pts[i];
+    var ax=p.x-mx,ay=p.y-my,md=ax*ax+ay*ay;
+    if(md<15000){var dd=Math.sqrt(md)||1,f=(15000-md)/15000*1.4;p.vx+=ax/dd*f*.5;p.vy+=ay/dd*f*.5;}
+    p.vx*=.97;p.vy*=.97;p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;p.x=Math.max(0,Math.min(w,p.x));p.y=Math.max(0,Math.min(h,p.y));
+    ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,6.29);ctx.fillStyle="rgba(150,170,255,.75)";ctx.fill();
+    if(md<22000){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.strokeStyle="rgba(129,140,248,"+(.32*(1-md/22000))+")";ctx.lineWidth=1;ctx.stroke();}
+    for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;if(d<16000){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(120,140,240,"+(.16*(1-d/16000))+")";ctx.lineWidth=1;ctx.stroke();}}}
+    raf=requestAnimationFrame(frame);}
   size();frame();addEventListener("resize",size);D.addEventListener("visibilitychange",function(){run=!D.hidden;if(run)frame();else cancelAnimationFrame(raf);});
 })();
+
+/* Scroll parallax (hero) + velocity skew (sections) */
+(function(){if(R)return;
+  var heroWrap=D.querySelector(".hero .wrap"),skewEls=[].slice.call(D.querySelectorAll(".sec > .wrap")),lastY=scrollY,sv=0;
+  (function fx(){var y=scrollY,dv=y-lastY;lastY=y;sv+=(dv-sv)*.12;var sk=Math.max(-2.4,Math.min(2.4,sv*.22));
+    for(var i=0;i<skewEls.length;i++)skewEls[i].style.transform="skewY("+sk.toFixed(2)+"deg)";
+    if(heroWrap&&y<innerHeight){heroWrap.style.transform="translateY("+(y*.28).toFixed(1)+"px)";heroWrap.style.opacity=Math.max(0,1-y/innerHeight*1.1);}
+    requestAnimationFrame(fx);})();
+})();
+
+/* Scramble/decode effect */
+function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textContent;el.setAttribute("data-t",fin);var ch="ABCDEFGHIJKLMNOPQRSTUVWXYZ",fr=0;var iv=setInterval(function(){el.textContent=fin.split("").map(function(c,i){return c===" "?" ":(i<fr?fin[i]:ch[Math.floor(Math.random()*26)]);}).join("");fr+=1.5;if(fr>fin.length){clearInterval(iv);el.textContent=fin;}},26);}
 
 /* Animated mesh gradient */
 (function(){if(R)return;var cv=D.getElementById("mesh");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,t=0,cols=[[99,102,241],[168,85,247],[34,211,238]];
