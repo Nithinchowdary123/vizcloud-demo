@@ -3,177 +3,154 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nexora — Strategy. Technology. Momentum.</title>
-<meta name="description" content="Nexora is a strategy &amp; technology consulting firm helping ambitious companies transform, scale, and lead. Digital transformation, data &amp; AI, cloud, and more.">
+<title>Viz Cloud Technologies — Demo</title>
+<meta name="description" content="Viz Cloud Technologies — a strategic technology &amp; staffing partner. Salesforce, DevOps, SAP, Big Data, AI, Cloud Hosting. (Animated demo showcase.)">
 <meta name="theme-color" content="#06070d">
-<meta property="og:title" content="Nexora — Strategy. Technology. Momentum.">
-<meta property="og:description" content="A strategy &amp; technology consulting firm helping ambitious companies transform, scale, and lead.">
+<meta property="og:title" content="Viz Cloud Technologies — Demo">
+<meta property="og:description" content="A strategic technology &amp; staffing partner. Ready for the future.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='%2306070d'/%3E%3Cpath d='M28 72V28h9l26 30V28h9v44h-9L37 42v30z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='%2306070d'/%3E%3Cpath d='M24 26h13l13 34 13-34h13L58 74H42z' fill='url(%23g)'/%3E%3C/svg%3E">
 <style>
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false;}
 :root{
-  --bg:#06070d; --bg2:#0b0e1c; --panel:rgba(255,255,255,.035); --panel2:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.09); --ink:#f4f6fb; --text:#aab3c7; --muted:#6d7691;
-  --i:#6366f1; --v:#a855f7; --c:#22d3ee; --p:#ec4899;
-  --grad:linear-gradient(110deg,#818cf8,#c084fc,#22d3ee);
-  --maxw:1200px; --ease:cubic-bezier(.2,.7,.2,1);
+  --bg:#06070d;--bg2:#0b0e1c;--panel:rgba(255,255,255,.035);--panel2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.09);--ink:#f4f6fb;--text:#aab3c7;--muted:#6d7691;
+  --grad:linear-gradient(110deg,#818cf8,#c084fc,#22d3ee);--maxw:1200px;--ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:var(--bg); color:var(--text); line-height:1.65; overflow-x:hidden;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:800}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#a5b4fc;margin-bottom:18px}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:40px;font-weight:700;font-size:14.5px;letter-spacing:.01em;border:none;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease);position:relative;will-change:transform}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:40px;font-weight:700;font-size:14.5px;border:none;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease);position:relative;overflow:hidden;will-change:transform}
 .btn-primary{color:#0a0b12;background:linear-gradient(110deg,#a5b4fc,#67e8f9);box-shadow:0 10px 34px rgba(99,102,241,.45)}
 .btn-primary:hover{box-shadow:0 16px 46px rgba(99,102,241,.6)}
 .btn-ghost{color:#e6ebf5;background:var(--panel);border:1px solid var(--line)}
 .btn-ghost:hover{background:var(--panel2);border-color:#8b93ff}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:translate(-50%,-50%) scale(0);animation:rip .6s ease-out;pointer-events:none}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(18);opacity:0}}
 
-/* ---------- Preloader ---------- */
 #pre{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .7s ease,visibility .7s}
 #pre.done{opacity:0;visibility:hidden}
-#pre .mk{font-size:34px;font-weight:800;letter-spacing:-.02em}
+#pre .mk{font-size:30px;font-weight:800;letter-spacing:.02em}
 #pre .track{width:180px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
 #pre .track i{display:block;height:100%;width:0;background:var(--grad);animation:load 1.1s var(--ease) forwards}
 @keyframes load{to{width:100%}}
 
-/* ---------- Cursor ---------- */
 .cur,.cur-d{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:900;mix-blend-mode:difference}
 .cur{width:34px;height:34px;border:1.5px solid #fff;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
 .cur-d{width:5px;height:5px;background:#fff;transform:translate(-50%,-50%)}
-.cur.grow{width:56px;height:56px;background:rgba(255,255,255,.12);border-color:transparent}
-@media (pointer:coarse){.cur,.cur-d{display:none}}
+.cur.grow{width:58px;height:58px;background:rgba(255,255,255,.12);border-color:transparent}
+#spot{position:fixed;top:0;left:0;width:600px;height:600px;margin:-300px 0 0 -300px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(99,102,241,.09),transparent 62%);mix-blend-mode:screen;will-change:transform}
+@media (pointer:coarse){.cur,.cur-d,#spot{display:none}}
 
-/* ---------- Nav ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:600;transition:padding .3s var(--ease),background .3s,border-color .3s;padding:22px 0;border-bottom:1px solid transparent}
 header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;color:#fff;letter-spacing:-.02em}
-.logo .mark{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 210deg,#6366f1,#a855f7,#22d3ee,#6366f1);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(99,102,241,.5)}
-.logo .mark svg{width:20px;height:20px}
-.menu{display:flex;align-items:center;gap:34px;list-style:none}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em}
+.logo .mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from var(--ang,210deg),#6366f1,#a855f7,#22d3ee,#6366f1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(99,102,241,.5);animation:spin 6s linear infinite}
+@keyframes spin{to{--ang:570deg}}
+.menu{display:flex;align-items:center;gap:32px;list-style:none}
 .menu a{font-size:14.5px;font-weight:600;color:#c3cadb;position:relative;padding:6px 0;transition:color .2s}
 .menu a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
 .menu a:hover{color:#fff}.menu a:hover:after{transform:scaleX(1)}
 .nav .btn{padding:11px 22px}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
 .burger span{width:24px;height:2px;background:#fff;transition:.3s}
-@media(max-width:900px){
-  .menu{position:fixed;inset:0 0 0 auto;width:min(80vw,320px);flex-direction:column;justify-content:center;gap:28px;background:rgba(11,14,28,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform .4s var(--ease);border-left:1px solid var(--line)}
-  .menu.open{transform:none}
-  .nav>.btn{display:none}
-  .burger{display:flex}
-  .burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .burger.x span:nth-child(2){opacity:0}
-  .burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-}
+@media(max-width:900px){.menu{position:fixed;inset:0 0 0 auto;width:min(80vw,320px);flex-direction:column;justify-content:center;gap:28px;background:rgba(11,14,28,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform .4s var(--ease);border-left:1px solid var(--line)}.menu.open{transform:none}.nav>.btn{display:none}.burger{display:flex}.burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger.x span:nth-child(2){opacity:0}.burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
 
-/* ---------- Hero ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
 #mesh{position:absolute;inset:0;z-index:0}
-.hero .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;z-index:0;animation:float 16s ease-in-out infinite}
-.hero .b1{width:520px;height:520px;background:radial-gradient(circle,#6366f1,transparent 68%);top:-120px;right:-80px}
-.hero .b2{width:460px;height:460px;background:radial-gradient(circle,#22d3ee,transparent 68%);bottom:-140px;left:-100px;animation-delay:-8s}
-.hero .b3{width:400px;height:400px;background:radial-gradient(circle,#a855f7,transparent 68%);top:40%;left:50%;animation-delay:-4s;opacity:.4}
+.pl{position:absolute;inset:0;z-index:0;will-change:transform}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:float 16s ease-in-out infinite}
+.b1{width:520px;height:520px;background:radial-gradient(circle,#6366f1,transparent 68%);top:-120px;right:-80px}
+.b2{width:460px;height:460px;background:radial-gradient(circle,#22d3ee,transparent 68%);bottom:-140px;left:-100px;animation-delay:-8s}
+.b3{width:400px;height:400px;background:radial-gradient(circle,#a855f7,transparent 68%);top:40%;left:50%;animation-delay:-4s;opacity:.4}
 @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-46px)}}
 #dots{position:absolute;inset:0;z-index:1;pointer-events:none}
 .hero .wrap{position:relative;z-index:2;text-align:center}
-.hero h1{font-size:clamp(42px,8vw,86px);font-weight:800}
-.hero .sub{font-size:clamp(17px,2.3vw,21px);max-width:660px;margin:26px auto 36px;color:#c3cadb}
+.hero h1{font-size:clamp(42px,8vw,84px);font-weight:800}
+.rot{display:inline-block;position:relative}
+.rot span{display:inline-block;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.hero .sub{font-size:clamp(17px,2.3vw,21px);max-width:680px;margin:26px auto 36px;color:#c3cadb}
 .hero .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero .trust{margin-top:52px;display:flex;gap:34px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:13.5px;letter-spacing:.02em}
+.hero .trust{margin-top:52px;display:flex;gap:34px;justify-content:center;flex-wrap:wrap;color:var(--muted);font-size:13.5px}
 .hero .trust b{color:#dfe4f0}
 .reveal-h>*{opacity:0;transform:translateY(26px);animation:up .9s var(--ease) forwards}
-.reveal-h>*:nth-child(1){animation-delay:.05s}.reveal-h>*:nth-child(2){animation-delay:.18s}
-.reveal-h>*:nth-child(3){animation-delay:.31s}.reveal-h>*:nth-child(4){animation-delay:.44s}
-.reveal-h>*:nth-child(5){animation-delay:.57s}
+.reveal-h>*:nth-child(1){animation-delay:.05s}.reveal-h>*:nth-child(2){animation-delay:.18s}.reveal-h>*:nth-child(3){animation-delay:.31s}.reveal-h>*:nth-child(4){animation-delay:.44s}.reveal-h>*:nth-child(5){animation-delay:.57s}
 @keyframes up{to{opacity:1;transform:none}}
 .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(255,255,255,.28);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
 .scroll-cue i{width:4px;height:8px;border-radius:2px;background:#fff;animation:cue 1.6s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(-4px)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 
-/* ---------- Marquee ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:20px 0;background:var(--bg2)}
-.marquee .t{display:inline-block;animation:scrollx 28s linear infinite}
-.marquee span{display:inline-block;padding:0 30px;font-size:22px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(160,170,220,.5);letter-spacing:.01em}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:20px 0;background:var(--bg2);cursor:grab;user-select:none;touch-action:pan-y}
+.marquee .t{display:inline-block}
+.marquee span{display:inline-block;padding:0 30px;font-size:22px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(160,170,220,.5)}
 .marquee span:after{content:"✦";margin-left:30px;color:rgba(129,140,248,.7);-webkit-text-stroke:0;font-size:15px;vertical-align:middle}
-@keyframes scrollx{to{transform:translateX(-50%)}}
 
-/* ---------- Sections ---------- */
-section{position:relative}
-.sec{padding:110px 0}
-.head{max-width:680px;margin:0 auto 60px;text-align:center}
+.sec{padding:110px 0;position:relative}
+.head{max-width:700px;margin:0 auto 60px;text-align:center}
 .head h2{font-size:clamp(30px,4.5vw,46px)}
 .head p{margin-top:16px;font-size:17px;color:var(--muted)}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
-/* Services */
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px 30px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s,background .3s;will-change:transform}
-.card:before{content:"";position:absolute;inset:0;background:radial-gradient(340px 180px at var(--mx,50%) var(--my,0%),rgba(129,140,248,.22),transparent 70%);opacity:0;transition:opacity .3s}
-.card:hover{transform:translateY(-6px);border-color:rgba(129,140,248,.5);background:var(--panel2)}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px 30px;overflow:hidden;transition:background .3s;transform-style:preserve-3d;will-change:transform}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(360px 200px at var(--mx,50%) var(--my,0%),rgba(129,140,248,.22),transparent 70%);opacity:0;transition:opacity .3s;z-index:0}
+.card:after{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;background:conic-gradient(from var(--ang,0deg),transparent,#818cf8,#22d3ee,transparent 45%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;z-index:2}
+.card:hover{background:var(--panel2)}
 .card:hover:before{opacity:1}
-.card .ico{width:56px;height:56px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(34,211,238,.18));border:1px solid var(--line);margin-bottom:22px;position:relative;z-index:1}
+.card:hover:after{opacity:1;animation:spin2 4s linear infinite}
+@keyframes spin2{to{--ang:360deg}}
+.card>*{position:relative;z-index:1}
+.card .ico{width:56px;height:56px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(34,211,238,.18));border:1px solid var(--line);margin-bottom:22px}
 .card .ico svg{width:26px;height:26px;stroke:#a5b4fc;fill:none;stroke-width:1.7}
-.card h3{font-size:20px;margin-bottom:10px;position:relative;z-index:1}
-.card p{font-size:14.5px;color:var(--muted);position:relative;z-index:1}
-.card .n{position:absolute;top:24px;right:28px;font-size:13px;font-weight:700;color:rgba(255,255,255,.15)}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{font-size:14.5px;color:var(--muted)}
+.card .n{position:absolute;top:24px;right:28px;font-size:13px;font-weight:700;color:rgba(255,255,255,.16);z-index:1}
 
-/* Approach steps */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
 .steps:before{content:"";position:absolute;top:26px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.4),transparent)}
 .step .num{font-size:15px;font-weight:800;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg2);border:1px solid var(--line);color:#a5b4fc;margin-bottom:20px;position:relative;z-index:1;box-shadow:0 0 30px rgba(99,102,241,.15)}
-.step h3{font-size:18px;margin-bottom:8px}
-.step p{font-size:14px;color:var(--muted)}
+.step h3{font-size:18px;margin-bottom:8px}.step p{font-size:14px;color:var(--muted)}
 
-/* Impact */
 .impact{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
 .stat .num{font-size:clamp(40px,6vw,60px);font-weight:800;line-height:1}
-.stat .lab{margin-top:12px;color:var(--muted);font-size:14.5px;letter-spacing:.02em}
+.stat .lab{margin-top:12px;color:var(--muted);font-size:14.5px}
 
-/* Industries */
 .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ind{display:flex;align-items:center;gap:14px;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;transition:transform .25s var(--ease),border-color .25s,background .25s}
 .ind:hover{transform:translateY(-4px);border-color:rgba(129,140,248,.5);background:var(--panel2)}
 .ind .d{width:9px;height:9px;border-radius:50%;background:var(--grad);flex:0 0 auto;box-shadow:0 0 12px rgba(129,140,248,.7)}
 .ind span{color:#dbe1ee;font-weight:600;font-size:15.5px}
 
-/* Insights */
 .grid3b{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.post{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s}
-.post:hover{transform:translateY(-6px);border-color:rgba(129,140,248,.5)}
+.post{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s;transform-style:preserve-3d}
+.post:hover{border-color:rgba(129,140,248,.5)}
 .post .thumb{height:170px;position:relative;overflow:hidden}
-.post .thumb i{position:absolute;inset:0;opacity:.9}
-.post .p1{background:linear-gradient(135deg,#4338ca,#0891b2)}
-.post .p2{background:linear-gradient(135deg,#7c3aed,#db2777)}
-.post .p3{background:linear-gradient(135deg,#0e7490,#4f46e5)}
+.post .thumb i{position:absolute;inset:0;opacity:.9;transition:transform .5s var(--ease)}
+.post:hover .thumb i{transform:scale(1.08)}
+.post .p1{background:linear-gradient(135deg,#4338ca,#0891b2)}.post .p2{background:linear-gradient(135deg,#7c3aed,#db2777)}.post .p3{background:linear-gradient(135deg,#0e7490,#4f46e5)}
 .post .thumb:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.25),transparent 55%)}
 .post .body{padding:24px}
 .post .tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a5b4fc}
-.post h3{font-size:19px;margin:12px 0 10px}
-.post p{font-size:14px;color:var(--muted)}
+.post h3{font-size:19px;margin:12px 0 10px}.post p{font-size:14px;color:var(--muted)}
 .post .rd{display:inline-block;margin-top:16px;color:#a5b4fc;font-weight:700;font-size:13.5px}
 
-/* CTA */
 .cta-band{position:relative;text-align:center;padding:100px 0;overflow:hidden;background:radial-gradient(700px 320px at 50% 0%,rgba(99,102,241,.28),transparent 65%),linear-gradient(180deg,var(--bg2),var(--bg))}
 .cta-band h2{font-size:clamp(32px,5vw,54px)}
-.cta-band p{max-width:520px;margin:18px auto 34px;color:#c3cadb;font-size:18px}
+.cta-band p{max-width:560px;margin:18px auto 34px;color:#c3cadb;font-size:18px}
 
-/* Footer */
 footer{border-top:1px solid var(--line);background:#05060b;padding:70px 0 34px}
-.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px}
 footer .logo{margin-bottom:18px}
-footer .about{color:var(--muted);font-size:14.5px;max-width:280px}
+footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 .fcol h4{color:#dbe1ee;font-size:14px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:18px}
 .fcol a{display:block;color:var(--muted);font-size:14.5px;padding:6px 0;transition:color .2s,padding-left .2s}
 .fcol a:hover{color:#fff;padding-left:5px}
@@ -183,28 +160,26 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:280px}
 .socials a:hover{transform:translateY(-3px);border-color:#8b93ff;background:var(--panel2)}
 .socials svg{width:17px;height:17px;fill:#c3cadb}
 
-/* to top */
-#top{position:fixed;right:22px;bottom:22px;z-index:500;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(11,14,28,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:.3s var(--ease)}
+#top{position:fixed;right:22px;bottom:22px;z-index:500;width:52px;height:52px;border-radius:50%;border:none;background:none;cursor:pointer;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
 #top.show{opacity:1;transform:none;pointer-events:auto}
-#top:hover{border-color:#8b93ff;transform:translateY(-3px)}
+#top svg{position:absolute;inset:0}
+#top .bg{fill:rgba(11,14,28,.85)}
+#top .ring{fill:none;stroke:url(#tg);stroke-width:3;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center}
+#top .arw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff}
 
 @media(max-width:900px){.grid3,.grid3b,.grid6{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.steps:before{display:none}.stats{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.grid3,.grid3b,.grid6,.stats,.fgrid{grid-template-columns:1fr}.sec{padding:80px 0}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.hero .blob{animation:none}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}}
 </style>
 </head>
 <body>
 
-<!-- Preloader -->
-<div id="pre"><div class="mk grad">NEXORA</div><div class="track"><i></i></div></div>
+<div id="pre"><div class="mk grad">VIZ CLOUD TECHNOLOGIES</div><div class="track"><i></i></div></div>
+<div class="cur"></div><div class="cur-d"></div><div id="spot"></div>
 
-<!-- Cursor -->
-<div class="cur"></div><div class="cur-d"></div>
-
-<!-- Nav -->
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top-anchor" class="logo"><span class="mark"><svg viewBox="0 0 100 100"><path d="M28 72V28h9l26 30V28h9v44h-9L37 42v30z" fill="#fff"/></svg></span>Nexora</a>
+    <a href="#top-anchor" class="logo"><span class="mark">V</span>Viz Cloud <span class="grad">Technologies</span></a>
     <ul class="menu" id="menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -217,79 +192,72 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:280px}
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
-
 <span id="top-anchor"></span>
 
-<!-- Hero -->
 <section class="hero">
   <canvas id="mesh"></canvas>
-  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="pl" id="pl"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
   <canvas id="dots"></canvas>
   <div class="wrap reveal-h">
-    <span class="eyebrow">Strategy &amp; Technology Consulting</span>
-    <h1>Turn ambition into <span class="grad">momentum</span>.</h1>
-    <p class="sub">Nexora partners with bold companies to reimagine strategy, engineer technology, and deliver change that compounds — from first idea to lasting impact.</p>
+    <span class="eyebrow">Viz Cloud Technologies</span>
+    <h1>Ready for the <span class="rot grad" id="rot">future</span>.</h1>
+    <p class="sub">A strategic technology &amp; staffing partner &mdash; building scalable enterprise solutions and placing the right talent for contract &amp; permanent roles.</p>
     <div class="cta">
       <a href="#contact" class="btn btn-primary">Start a project →</a>
       <a href="#services" class="btn btn-ghost">Explore services</a>
     </div>
     <div class="trust">
-      <span><b>500+</b> engagements delivered</span>
-      <span><b>98%</b> client retention</span>
-      <span><b>40+</b> countries</span>
+      <span><b>92</b> years combined expertise</span>
+      <span><b>95%+</b> placement retention</span>
+      <span><b>10+</b> years delivering</span>
     </div>
   </div>
   <div class="scroll-cue"><i></i></div>
 </section>
 
-<!-- Marquee -->
-<div class="marquee"><div class="t" id="mq">
-  <span>Strategy</span><span>Digital Transformation</span><span>Data &amp; AI</span><span>Cloud</span><span>Cybersecurity</span><span>Automation</span><span>Product</span><span>Managed Services</span>
-  <span>Strategy</span><span>Digital Transformation</span><span>Data &amp; AI</span><span>Cloud</span><span>Cybersecurity</span><span>Automation</span><span>Product</span><span>Managed Services</span>
+<div class="marquee" id="mq"><div class="t">
+  <span>Salesforce</span><span>DevOps</span><span>SAP</span><span>Big Data</span><span>Artificial Intelligence</span><span>Cloud Hosting</span><span>Outsourcing</span>
+  <span>Salesforce</span><span>DevOps</span><span>SAP</span><span>Big Data</span><span>Artificial Intelligence</span><span>Cloud Hosting</span><span>Outsourcing</span>
 </div></div>
 
-<!-- Services -->
 <section class="sec" id="services">
   <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">What we do</span><h2>Consulting built for the <span class="grad">next decade</span></h2><p>End-to-end capabilities across strategy, technology, and delivery — brought together by teams who ship.</p></div>
+    <div class="head reveal"><span class="eyebrow">What we do</span><h2>Services built for <span class="grad">enterprise scale</span></h2><p>Deep expertise across the modern technology stack, delivered by teams who ship.</p></div>
     <div class="grid3">
-      <div class="card reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l8 5 8-5"/></svg></div><h3>Strategy &amp; Advisory</h3><p>Sharpen where to play and how to win — growth strategy, operating models, and roadmaps grounded in evidence.</p></div>
-      <div class="card reveal"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Digital Transformation</h3><p>Modernize the core and reinvent experiences — from legacy migration to end-to-end digital operating models.</p></div>
-      <div class="card reveal"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Data &amp; AI</h3><p>Turn data into decisions — analytics, ML, and generative AI that move real business metrics, safely.</p></div>
-      <div class="card reveal"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15z"/></svg></div><h3>Cloud Engineering</h3><p>Build resilient, scalable platforms — cloud-native architecture, DevOps, and reliability engineering.</p></div>
-      <div class="card reveal"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><h3>Cybersecurity</h3><p>Protect what matters — zero-trust architecture, threat management, and security embedded by design.</p></div>
-      <div class="card reveal"><span class="n">06</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-3-6.5M20.5 5v4h-4"/></svg></div><h3>Managed Services</h3><p>Keep momentum after go-live — run, optimize, and continuously improve your platforms and products.</p></div>
+      <div class="card reveal"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15z"/></svg></div><h3>Salesforce</h3><p>The world's #1 CRM platform — uniting your marketing, sales, service and IT teams from anywhere.</p></div>
+      <div class="card reveal"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-3-6.5M20.5 5v4h-4"/></svg></div><h3>DevOps</h3><p>Culture, practices and tooling that let you ship and improve applications at high velocity.</p></div>
+      <div class="card reveal"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6-9 6zM3 9v6l9 6 9-6V9"/></svg></div><h3>SAP</h3><p>Enterprise resource planning solutions for managing business operations and relationships.</p></div>
+      <div class="card reveal"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><h3>Big Data</h3><p>Store, process and unlock value from data too large and complex for traditional tools.</p></div>
+      <div class="card reveal"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Artificial Intelligence</h3><p>Systems that perform tasks requiring human intelligence — from perception to decision-making.</p></div>
+      <div class="card reveal"><span class="n">06</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15zM9 19l1.5-3M15 19l-1.5-3"/></svg></div><h3>Cloud Hosting</h3><p>Applications and sites on a resilient network of cloud servers for flexibility and scale.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Approach -->
 <section class="sec" id="approach" style="background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg))">
   <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">How we work</span><h2>A method that <span class="grad">compounds</span></h2><p>Four deliberate phases that turn a bold idea into measurable, lasting outcomes.</p></div>
+    <div class="head reveal"><span class="eyebrow">How we work</span><h2>Our recruitment <span class="grad">process</span></h2><p>Four deliberate phases that turn a requirement into the right, lasting hire.</p></div>
     <div class="steps">
-      <div class="step reveal"><div class="num">01</div><h3>Discover</h3><p>We immerse in your context, data, and goals to find the highest-leverage opportunities.</p></div>
-      <div class="step reveal"><div class="num">02</div><h3>Design</h3><p>We shape strategy and architecture with your teams — validated fast, built to scale.</p></div>
-      <div class="step reveal"><div class="num">03</div><h3>Deliver</h3><p>We ship in tight iterations, proving value early and reducing risk at every step.</p></div>
-      <div class="step reveal"><div class="num">04</div><h3>Scale</h3><p>We embed, optimize, and hand over — so momentum outlasts the engagement.</p></div>
+      <div class="step reveal"><div class="num">01</div><h3>Understand</h3><p>We first understand the context and culture in which our clients and candidates work.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3>Tailor</h3><p>We tailor bespoke solutions with the most appropriate methodology for each assignment.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Deliver</h3><p>We close positions within the first five profiles in the given time frame.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>Sustain</h3><p>A proven track record of delivery and a 95%+ placement retention rate.</p></div>
     </div>
   </div>
 </section>
 
-<!-- Impact -->
 <section class="sec impact" id="impact">
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">The impact</span><h2>Numbers that <span class="grad">matter</span></h2></div>
     <div class="stats" id="stats">
-      <div class="stat reveal"><div class="num grad"><span data-to="500">0</span>+</div><div class="lab">Engagements delivered</div></div>
-      <div class="stat reveal"><div class="num grad"><span data-to="98">0</span>%</div><div class="lab">Client retention</div></div>
-      <div class="stat reveal"><div class="num grad"><span data-to="1200">0</span>+</div><div class="lab">Experts worldwide</div></div>
-      <div class="stat reveal"><div class="num grad"><span data-to="40">0</span>+</div><div class="lab">Countries served</div></div>
+      <div class="stat reveal"><div class="num grad"><span data-to="92">0</span></div><div class="lab">Years combined expertise</div></div>
+      <div class="stat reveal"><div class="num grad"><span data-to="95">0</span>%+</div><div class="lab">Placement retention</div></div>
+      <div class="stat reveal"><div class="num grad"><span data-to="10">0</span>+</div><div class="lab">Years delivering</div></div>
+      <div class="stat reveal"><div class="num grad"><span data-to="6">0</span></div><div class="lab">Fortune 500 co-founders</div></div>
     </div>
   </div>
 </section>
 
-<!-- Industries -->
 <section class="sec" id="industries">
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">Industries</span><h2>Deep expertise, <span class="grad">every sector</span></h2><p>Cross-industry pattern recognition, tailored to your market's realities.</p></div>
@@ -304,118 +272,141 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:280px}
   </div>
 </section>
 
-<!-- Insights -->
 <section class="sec" id="insights" style="background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg))">
   <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">Insights</span><h2>Ideas worth <span class="grad">acting on</span></h2><p>Perspectives from our teams on the shifts reshaping business and technology.</p></div>
+    <div class="head reveal"><span class="eyebrow">Insights</span><h2>Ideas worth <span class="grad">acting on</span></h2><p>Perspectives on the shifts reshaping business and technology.</p></div>
     <div class="grid3b">
       <article class="post reveal"><div class="thumb"><i class="p1"></i></div><div class="body"><span class="tag">AI</span><h3>Putting generative AI to work — safely</h3><p>A pragmatic framework for scaling GenAI from pilots to production value.</p><span class="rd">Read more →</span></div></article>
       <article class="post reveal"><div class="thumb"><i class="p2"></i></div><div class="body"><span class="tag">Cloud</span><h3>The modern platform advantage</h3><p>Why cloud-native operating models decide who leads their category.</p><span class="rd">Read more →</span></div></article>
-      <article class="post reveal"><div class="thumb"><i class="p3"></i></div><div class="body"><span class="tag">Strategy</span><h3>From transformation to momentum</h3><p>How the best companies make change continuous instead of episodic.</p><span class="rd">Read more →</span></div></article>
+      <article class="post reveal"><div class="thumb"><i class="p3"></i></div><div class="body"><span class="tag">Talent</span><h3>Closing critical roles, faster</h3><p>How disciplined search closes even niche positions within the first five profiles.</p><span class="rd">Read more →</span></div></article>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-band" id="contact">
   <div class="wrap reveal">
-    <h2>Let's build your <span class="grad">momentum</span>.</h2>
-    <p>Tell us where you want to go. We'll bring the strategy, the technology, and the team to get you there.</p>
-    <a href="mailto:hello@nexora.example" class="btn btn-primary">Start a conversation →</a>
+    <h2>Waste no more <span class="grad">time</span>.</h2>
+    <p>Share your requirements — give us a week and we'll set the benchmark.</p>
+    <a href="mailto:info@vizcloudtech.com" class="btn btn-primary">Start a conversation →</a>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <a href="#top-anchor" class="logo"><span class="mark"><svg viewBox="0 0 100 100"><path d="M28 72V28h9l26 30V28h9v44h-9L37 42v30z" fill="#fff"/></svg></span>Nexora</a>
-        <p class="about">A strategy &amp; technology consulting firm helping ambitious companies transform, scale, and lead.</p>
+        <a href="#top-anchor" class="logo"><span class="mark">V</span>Viz Cloud <span class="grad">Technologies</span></a>
+        <p class="about">A strategic technology &amp; staffing partner helping ambitious companies transform, scale, and lead.</p>
       </div>
       <div class="fcol"><h4>Company</h4><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
-      <div class="fcol"><h4>Resources</h4><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="#top-anchor">Careers</a><a href="#top-anchor">Newsroom</a></div>
-      <div class="fcol"><h4>Get in touch</h4><a href="mailto:hello@nexora.example">hello@nexora.example</a><a href="#contact">+1 (555) 012-3456</a><a href="#top-anchor">San Francisco · London · Singapore</a></div>
+      <div class="fcol"><h4>Resources</h4><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="#top-anchor">Careers</a></div>
+      <div class="fcol"><h4>Get in touch</h4><a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a><a href="tel:+14084250981">+1 (408) 425-0981</a><a href="#top-anchor">774 Burgoyne Street, Mountain View, CA-94043</a></div>
     </div>
     <div class="fbot">
-      <span>© <span id="yr"></span> Nexora Consulting. A demo showcase project.</span>
+      <span>© <span id="yr"></span> Viz Cloud Technologies · Demo showcase</span>
       <div class="socials">
-        <a href="#top-anchor" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.8V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
-        <a href="#top-anchor" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H3l7-9L2 2h6l4 6z"/></svg></a>
-        <a href="#top-anchor" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
+        <a href="https://www.linkedin.com/company/vizcloudtech" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.8V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
+        <a href="https://www.facebook.com/vizcloudtech" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13 22v-8h3l1-4h-4V8c0-1 .3-1.7 1.8-1.7H17V2.8C16.4 2.7 15.3 2.6 14 2.6 11.2 2.6 9 4.3 9 7.6V10H6v4h3v8z"/></svg></a>
       </div>
     </div>
   </div>
 </footer>
 
-<button id="top" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<button id="top" aria-label="Back to top">
+  <svg width="52" height="52" viewBox="0 0 52 52"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#818cf8"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><circle class="bg" cx="26" cy="26" r="25"/><circle class="ring" id="ring" cx="26" cy="26" r="23"/></svg>
+  <span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+</button>
 
 <script>
 (function(){
 "use strict";
 var R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 var fine=matchMedia("(pointer:fine)").matches;
+var D=document;
 
-/* Preloader */
-addEventListener("load",function(){setTimeout(function(){document.getElementById("pre").classList.add("done");},900);});
+addEventListener("load",function(){setTimeout(function(){D.getElementById("pre").classList.add("done");},900);});
+D.getElementById("yr").textContent=new Date().getFullYear();
 
-/* Year */
-document.getElementById("yr").textContent=new Date().getFullYear();
-
-/* Nav shrink + back-to-top */
-var hdr=document.getElementById("hdr"),top=document.getElementById("top");
-function onScroll(){var y=scrollY;hdr.classList.toggle("scrolled",y>30);top.classList.toggle("show",y>600);}
+/* Nav shrink + back-to-top ring */
+var hdr=D.getElementById("hdr"),top=D.getElementById("top"),ring=D.getElementById("ring");
+var C=2*Math.PI*23; ring.style.strokeDasharray=C;
+function onScroll(){var y=scrollY,h=D.documentElement.scrollHeight-innerHeight;hdr.classList.toggle("scrolled",y>30);top.classList.toggle("show",y>600);ring.style.strokeDashoffset=C*(1-(h>0?y/h:0));}
 addEventListener("scroll",onScroll,{passive:true});onScroll();
 top.onclick=function(){scrollTo({top:0,behavior:R?"auto":"smooth"});};
 
 /* Mobile menu */
-var burger=document.getElementById("burger"),menu=document.getElementById("menu");
+var burger=D.getElementById("burger"),menu=D.getElementById("menu");
 burger.onclick=function(){menu.classList.toggle("open");burger.classList.toggle("x");};
 menu.addEventListener("click",function(e){if(e.target.tagName==="A"){menu.classList.remove("open");burger.classList.remove("x");}});
 
-/* Reveal on scroll */
+/* Reveal */
 if("IntersectionObserver" in window && !R){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var els=e.target.parentNode.querySelectorAll(".reveal");e.target.style.transitionDelay=(Math.max(0,[].indexOf.call(els,e.target))%3*0.08)+"s";e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15,rootMargin:"0px 0px -8% 0px"});
-  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
-}else{document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15,rootMargin:"0px 0px -8% 0px"});
+  D.querySelectorAll(".reveal").forEach(function(el,i){el.style.transitionDelay=(i%3*0.08)+"s";io.observe(el);});
+}else D.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
 
 /* Counters */
 if("IntersectionObserver" in window){
-  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll("[data-to]").forEach(function(n){var to=+n.getAttribute("data-to"),t0=performance.now(),d=1600;(function tick(t){var p=Math.min(1,(t-t0)/d);n.textContent=Math.round((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(tick);})(t0);});co.unobserve(e.target);}});},{threshold:.5});
-  var st=document.getElementById("stats");if(st)co.observe(st);
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll("[data-to]").forEach(function(n){var to=+n.getAttribute("data-to"),t0=performance.now();(function tick(t){var p=Math.min(1,(t-t0)/1600);n.textContent=Math.round((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(tick);})(t0);});co.unobserve(e.target);}});},{threshold:.5});
+  var st=D.getElementById("stats");if(st)co.observe(st);
 }
 
-/* Card cursor-glow */
-if(fine){document.querySelectorAll(".card").forEach(function(c){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");});});}
-
-/* Magnetic buttons */
-if(fine&&!R){document.querySelectorAll(".btn-primary").forEach(function(b){b.addEventListener("mousemove",function(e){var r=b.getBoundingClientRect();b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.25)+"px,"+((e.clientY-r.top-r.height/2)*.35)+"px)";});b.addEventListener("mouseleave",function(){b.style.transform="";});});}
-
-/* Custom cursor */
-if(fine&&!R){
-  var cur=document.querySelector(".cur"),dot=document.querySelector(".cur-d"),cx=0,cy=0,tx=0,ty=0;
-  addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;dot.style.transform="translate("+tx+"px,"+ty+"px) translate(-50%,-50%)";});
-  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform="translate("+cx+"px,"+cy+"px) translate(-50%,-50%)";requestAnimationFrame(loop);})();
-  document.querySelectorAll("a,button,.card,.ind,.post").forEach(function(el){el.addEventListener("mouseenter",function(){cur.classList.add("grow");});el.addEventListener("mouseleave",function(){cur.classList.remove("grow");});});
-}
-
-/* Hero particle constellation */
+/* Rotating headline word */
 (function(){
-  if(R)return;
-  var cv=document.getElementById("dots");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,pts,raf,run=true;
-  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;var n=Math.min(64,Math.round(w*h/24000));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
-  function frame(){if(!run)return;ctx.clearRect(0,0,w,h);for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,6.29);ctx.fillStyle="rgba(150,170,255,.7)";ctx.fill();for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;if(d<16000){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(120,140,240,"+(.16*(1-d/16000))+")";ctx.lineWidth=1;ctx.stroke();}}}raf=requestAnimationFrame(frame);}
-  size();frame();addEventListener("resize",size);
-  document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run)frame();else cancelAnimationFrame(raf);});
+  var el=D.getElementById("rot");if(!el||R)return;
+  var words=["future","cloud","scale","next"],i=0,inner=el.querySelector("span")||el;
+  if(!el.querySelector("span")){el.innerHTML="<span>"+el.textContent+"</span>";inner=el.querySelector("span");}
+  setInterval(function(){inner.style.transform="translateY(-14px)";inner.style.opacity="0";setTimeout(function(){i=(i+1)%words.length;inner.textContent=words[i];inner.style.transform="translateY(14px)";requestAnimationFrame(function(){inner.style.transform="";inner.style.opacity="1";});},350);},2600);
 })();
 
-/* Animated mesh gradient (hero backdrop) */
+/* Card cursor-glow + 3D tilt */
+if(fine&&!R){D.querySelectorAll(".card,.post").forEach(function(c){
+  c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px");c.style.transition="transform 0s";c.style.transform="perspective(800px) rotateX("+(-py*5).toFixed(2)+"deg) rotateY("+(px*5).toFixed(2)+"deg) translateY(-6px)";});
+  c.addEventListener("mouseleave",function(){c.style.transition="";c.style.transform="";});
+});}
+
+/* Magnetic + ripple buttons */
+D.querySelectorAll(".btn").forEach(function(b){
+  if(fine&&!R&&b.classList.contains("btn-primary")){b.addEventListener("mousemove",function(e){var r=b.getBoundingClientRect();b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.25)+"px,"+((e.clientY-r.top-r.height/2)*.35)+"px)";});b.addEventListener("mouseleave",function(){b.style.transform="";});}
+  b.addEventListener("click",function(e){var r=b.getBoundingClientRect(),s=D.createElement("span");s.className="ripple";s.style.left=(e.clientX-r.left)+"px";s.style.top=(e.clientY-r.top)+"px";s.style.width=s.style.height="12px";b.appendChild(s);setTimeout(function(){s.remove();},600);});
+});
+
+/* Custom cursor + spotlight */
+if(fine&&!R){
+  var cur=D.querySelector(".cur"),dot=D.querySelector(".cur-d"),spot=D.getElementById("spot");
+  var cx=0,cy=0,tx=0,ty=0,sx=0,sy=0;
+  addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;dot.style.transform="translate("+tx+"px,"+ty+"px) translate(-50%,-50%)";});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;sx+=(tx-sx)*.08;sy+=(ty-sy)*.08;cur.style.transform="translate("+cx+"px,"+cy+"px) translate(-50%,-50%)";spot.style.transform="translate("+sx+"px,"+sy+"px)";requestAnimationFrame(loop);})();
+  D.querySelectorAll("a,button,.card,.ind,.post").forEach(function(el){el.addEventListener("mouseenter",function(){cur.classList.add("grow");});el.addEventListener("mouseleave",function(){cur.classList.remove("grow");});});
+}
+
+/* Hero mouse parallax */
+if(fine&&!R){var pl=D.getElementById("pl");addEventListener("mousemove",function(e){var x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);pl.style.transform="translate("+(x*30)+"px,"+(y*30)+"px)";});}
+
+/* Interactive marquee: auto + drag/wheel scrub */
 (function(){
-  if(R)return;var cv=document.getElementById("mesh");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,t=0;
-  var cols=[[99,102,241],[168,85,247],[34,211,238]];
-  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;}
-  size();addEventListener("resize",size);
-  function draw(){t+=.003;ctx.clearRect(0,0,w,h);for(var i=0;i<3;i++){var c=cols[i];var x=w*(.5+.36*Math.cos(t+i*2.1));var y=h*(.5+.36*Math.sin(t*1.15+i*1.7));var g=ctx.createRadialGradient(x,y,0,x,y,Math.max(w,h)*.5);g.addColorStop(0,"rgba("+c[0]+","+c[1]+","+c[2]+",.20)");g.addColorStop(1,"rgba("+c[0]+","+c[1]+","+c[2]+",0)");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}requestAnimationFrame(draw);}
+  var wrap=D.getElementById("mq"),track=wrap&&wrap.querySelector(".t");if(!track)return;
+  var off=0,half=0,speed=.65,manual=0,drag=false,lastX=0;
+  function measure(){half=track.scrollWidth/2;}measure();addEventListener("resize",measure);
+  (function loop(){if(!drag&&Date.now()>manual&&!R)off+=speed;if(half>0){while(off>=half)off-=half;while(off<0)off+=half;}track.style.transform="translateX("+(-off)+"px)";requestAnimationFrame(loop);})();
+  wrap.addEventListener("wheel",function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){off+=e.deltaX;manual=Date.now()+1200;e.preventDefault();}},{passive:false});
+  wrap.addEventListener("pointerdown",function(e){drag=true;lastX=e.clientX;wrap.style.cursor="grabbing";try{wrap.setPointerCapture(e.pointerId);}catch(x){}});
+  wrap.addEventListener("pointermove",function(e){if(drag){off-=(e.clientX-lastX);lastX=e.clientX;}});
+  function end(){if(drag){drag=false;manual=Date.now()+1200;wrap.style.cursor="grab";}}
+  wrap.addEventListener("pointerup",end);wrap.addEventListener("pointercancel",end);wrap.addEventListener("pointerleave",end);
+})();
+
+/* Hero particles */
+(function(){if(R)return;var cv=D.getElementById("dots");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,pts,raf,run=true;
+  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;var n=Math.min(64,Math.round(w*h/24000));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
+  function frame(){if(!run)return;ctx.clearRect(0,0,w,h);for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,6.29);ctx.fillStyle="rgba(150,170,255,.7)";ctx.fill();for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;if(d<16000){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle="rgba(120,140,240,"+(.16*(1-d/16000))+")";ctx.lineWidth=1;ctx.stroke();}}}raf=requestAnimationFrame(frame);}
+  size();frame();addEventListener("resize",size);D.addEventListener("visibilitychange",function(){run=!D.hidden;if(run)frame();else cancelAnimationFrame(raf);});
+})();
+
+/* Animated mesh gradient */
+(function(){if(R)return;var cv=D.getElementById("mesh");if(!cv)return;var ctx=cv.getContext("2d"),hero=cv.parentNode,w,h,t=0,cols=[[99,102,241],[168,85,247],[34,211,238]];
+  function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;}size();addEventListener("resize",size);
+  function draw(){t+=.003;ctx.clearRect(0,0,w,h);for(var i=0;i<3;i++){var c=cols[i],x=w*(.5+.36*Math.cos(t+i*2.1)),y=h*(.5+.36*Math.sin(t*1.15+i*1.7)),g=ctx.createRadialGradient(x,y,0,x,y,Math.max(w,h)*.5);g.addColorStop(0,"rgba("+c[0]+","+c[1]+","+c[2]+",.20)");g.addColorStop(1,"rgba("+c[0]+","+c[1]+","+c[2]+",0)");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}requestAnimationFrame(draw);}
   draw();
 })();
 })();
