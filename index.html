@@ -100,24 +100,35 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .reveal.in{opacity:1;transform:none}
 
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{position:relative;background:none;border:none;border-radius:20px;padding:0;min-height:300px;perspective:1600px}
-.card-inner{position:relative;width:100%;height:100%;min-height:300px;transition:transform .85s var(--ease);transform-style:preserve-3d;will-change:transform}
-@media(hover:hover){.card:hover .card-inner{transform:rotateY(180deg)}}
-.card.flipped .card-inner{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;border:1px solid var(--line);border-radius:20px;padding:34px 30px;background:var(--panel);overflow:hidden;display:flex;flex-direction:column;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.face.back{transform:rotateY(180deg);justify-content:center;align-items:flex-start;background:linear-gradient(160deg,rgba(99,102,241,.22),rgba(34,211,238,.08)),var(--bg2);border-color:rgba(129,140,248,.4);box-shadow:inset 0 0 60px rgba(99,102,241,.12)}
-.card .ico{width:56px;height:56px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,.25),rgba(34,211,238,.18));border:1px solid var(--line);margin-bottom:22px}
-.card .ico svg{width:26px;height:26px;stroke:#a5b4fc;fill:none;stroke-width:1.7}
-.card h3{font-size:20px;margin-bottom:10px}
-.card .face.front p{font-size:14.5px;color:var(--muted)}
-.card .face.back h3{font-size:22px;margin-bottom:12px}
-.card .face.back p{font-size:14.5px;color:#c3cadb}
-.card .n{position:absolute;top:24px;right:28px;font-size:13px;font-weight:700;color:rgba(255,255,255,.16);z-index:2}
-.card .flip-hint{position:absolute;bottom:20px;right:26px;color:var(--muted);font-size:12px;letter-spacing:.02em;display:inline-flex;align-items:center;gap:6px;opacity:.75}
-.card .flip-hint i{display:inline-block;font-style:normal;transition:transform .4s var(--ease)}
-.card:hover .flip-hint i{transform:rotate(180deg)}
-.card .back-cta{margin-top:18px;color:#a5b4fc;font-weight:700;font-size:14px;display:inline-block}
-.card .back-cta:hover{color:#c7d2fe}
+/* 3D orbit of service cards around a glowing globe */
+.orbit-stage{position:relative;height:560px;perspective:1500px;margin-top:26px;touch-action:pan-y;cursor:grab}
+.orbit-stage:active{cursor:grabbing}
+.globe{position:absolute;top:calc(50% - 30px);left:50%;width:172px;height:172px;margin:-86px 0 0 -86px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#c7d2fe,#6366f1 42%,#312e81 72%,#0b1030);
+  box-shadow:0 0 90px rgba(99,102,241,.5),0 0 34px rgba(34,211,238,.35),inset -18px -22px 50px rgba(0,0,0,.55),inset 14px 14px 40px rgba(199,210,254,.22);
+  animation:gspin 22s linear infinite}
+.globe:after{content:"";position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(129,140,248,.55),transparent 42%);-webkit-mask:radial-gradient(circle,transparent 59%,#000 60%);mask:radial-gradient(circle,transparent 59%,#000 60%);animation:gspin 9s linear infinite reverse}
+@keyframes gspin{to{transform:rotate(360deg)}}
+.ring{position:absolute;top:calc(50% - 30px);left:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.oc{position:absolute;width:236px;height:284px;left:-118px;top:-142px;
+  background:rgba(16,20,38,.72);border:1px solid var(--line);border-radius:20px;padding:30px 26px;overflow:hidden;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 20px 50px rgba(0,0,0,.45);transition:opacity .45s,box-shadow .45s,border-color .45s}
+.oc.active{border-color:rgba(129,140,248,.7);box-shadow:0 26px 64px rgba(0,0,0,.5),0 0 44px rgba(99,102,241,.45)}
+.oc:not(.active){opacity:.6}
+.oc .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(34,211,238,.2));border:1px solid var(--line);margin-bottom:18px}
+.oc .ico svg{width:24px;height:24px;stroke:#c7d2fe;fill:none;stroke-width:1.7}
+.oc .n{position:absolute;top:22px;right:24px;font-size:13px;font-weight:700;color:rgba(255,255,255,.2)}
+.oc h3{font-size:19px;margin-bottom:9px}
+.oc p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.oc .oca{margin-top:14px;color:#a5b4fc;font-weight:700;font-size:13px;display:inline-block}
+.oc .oca:hover{color:#c7d2fe}
+.orbit-ui{position:absolute;left:0;right:0;bottom:2px;display:flex;align-items:center;justify-content:center;gap:18px;z-index:6}
+.oarrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(11,14,28,.7);color:#fff;font-size:20px;line-height:1;cursor:pointer;transition:.2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.oarrow:hover{border-color:#8b93ff;background:var(--panel2);transform:translateY(-2px)}
+.ohint{color:var(--muted);font-size:12.5px;letter-spacing:.03em}
+@media(max-width:620px){.orbit-stage{height:470px}.oc{width:196px;height:250px;left:-98px;top:-125px;padding:24px 20px}.globe{width:128px;height:128px;margin:-64px 0 0 -64px}.oc p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.globe,.globe:after{animation:none}}
 
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
 .steps:before{content:"";position:absolute;top:26px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.4),transparent)}
@@ -239,31 +250,21 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 <section class="sec" id="services">
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">What we do</span><h2>Services built for <span class="grad">enterprise scale</span></h2><p>Deep expertise across the modern technology stack, delivered by teams who ship.</p></div>
-    <div class="grid3">
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15z"/></svg></div><h3>Salesforce</h3><p>The world's #1 CRM platform — uniting your marketing, sales, service and IT teams from anywhere.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>Salesforce</h3><p>Implementation, integration and optimization — tuned to how your teams actually work.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-3-6.5M20.5 5v4h-4"/></svg></div><h3>DevOps</h3><p>Culture, practices and tooling that let you ship and improve applications at high velocity.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>DevOps</h3><p>CI/CD, automation and reliability engineering that ships change with confidence.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6-9 6zM3 9v6l9 6 9-6V9"/></svg></div><h3>SAP</h3><p>Enterprise resource planning solutions for managing business operations and relationships.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>SAP</h3><p>ERP strategy, migration and support to keep your core business running smoothly.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><h3>Big Data</h3><p>Store, process and unlock value from data too large and complex for traditional tools.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>Big Data</h3><p>Pipelines, warehousing and analytics that turn raw data into decisions.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Artificial Intelligence</h3><p>Systems that perform tasks requiring human intelligence — from perception to decision-making.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>Artificial Intelligence</h3><p>From pilots to production — practical AI that moves real business metrics.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
-      <div class="card reveal"><div class="card-inner">
-        <div class="face front"><span class="n">06</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15zM9 19l1.5-3M15 19l-1.5-3"/></svg></div><h3>Cloud Hosting</h3><p>Applications and sites on a resilient network of cloud servers for flexibility and scale.</p><span class="flip-hint"><i>↻</i> flip</span></div>
-        <div class="face back"><h3>Cloud Hosting</h3><p>Resilient, scalable cloud platforms with security and performance built in.</p><a href="#contact" class="back-cta">Start a project →</a></div>
-      </div></div>
+    <div class="orbit-stage reveal" id="orbit">
+      <div class="globe"></div>
+      <div class="ring" id="ring">
+        <div class="oc"><span class="n">01</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15z"/></svg></div><h3>Salesforce</h3><p>The world's #1 CRM platform — uniting marketing, sales, service and IT from anywhere.</p><a href="#contact" class="oca">Start a project →</a></div>
+        <div class="oc"><span class="n">02</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-3-6.5M20.5 5v4h-4"/></svg></div><h3>DevOps</h3><p>Culture, practices and tooling that ship and improve applications at high velocity.</p><a href="#contact" class="oca">Start a project →</a></div>
+        <div class="oc"><span class="n">03</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6-9 6zM3 9v6l9 6 9-6V9"/></svg></div><h3>SAP</h3><p>Enterprise resource planning to manage business operations and relationships.</p><a href="#contact" class="oca">Start a project →</a></div>
+        <div class="oc"><span class="n">04</span><div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><h3>Big Data</h3><p>Store, process and unlock value from data too large for traditional tools.</p><a href="#contact" class="oca">Start a project →</a></div>
+        <div class="oc"><span class="n">05</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Artificial Intelligence</h3><p>Systems that perform tasks requiring human intelligence — from perception to decisions.</p><a href="#contact" class="oca">Start a project →</a></div>
+        <div class="oc"><span class="n">06</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 0 1 .5-8 6 6 0 0 1 11.6 1.5A3.5 3.5 0 0 1 17 15zM9 19l1.5-3M15 19l-1.5-3"/></svg></div><h3>Cloud Hosting</h3><p>Applications and sites on a resilient network of cloud servers for scale.</p><a href="#contact" class="oca">Start a project →</a></div>
+      </div>
+      <div class="orbit-ui">
+        <button class="oarrow prev" aria-label="Previous service">‹</button>
+        <span class="ohint">drag · scroll · or use arrows to rotate</span>
+        <button class="oarrow next" aria-label="Next service">›</button>
+      </div>
     </div>
   </div>
 </section>
@@ -452,8 +453,33 @@ if(fine&&!R){var pl=D.getElementById("pl");addEventListener("mousemove",function
   (function fx(){var y=scrollY;if(heroWrap&&y<innerHeight){heroWrap.style.transform="translateY("+(y*.28).toFixed(1)+"px)";heroWrap.style.opacity=Math.max(0,1-y/innerHeight*1.1);}requestAnimationFrame(fx);})();
 })();
 
-/* Tap-to-flip service cards (touch / no-hover devices) */
-if(!matchMedia("(hover:hover)").matches){D.querySelectorAll(".card").forEach(function(c){c.addEventListener("click",function(e){if(e.target.closest(".back-cta"))return;c.classList.toggle("flipped");});});}
+/* 3D orbit of service cards around the globe */
+(function(){
+  var stage=D.getElementById("orbit"),ring=D.getElementById("ring");if(!ring)return;
+  var cards=[].slice.call(ring.children),N=cards.length,ang=360/N,radius=320;
+  function place(){radius=Math.min(330,Math.max(190,innerWidth*0.27));for(var i=0;i<N;i++)cards[i].style.transform="rotateY("+(i*ang)+"deg) translateZ("+radius+"px)";}
+  place();addEventListener("resize",place);
+  var rot=0,target=0,drag=false,lastX=0,moved=false,manual=0;
+  function guard(e){return e.target.closest("a,.oarrow");}
+  stage.addEventListener("pointerdown",function(e){if(guard(e))return;drag=true;moved=false;lastX=e.clientX;try{stage.setPointerCapture(e.pointerId);}catch(x){}});
+  stage.addEventListener("pointermove",function(e){if(drag){var dx=e.clientX-lastX;if(Math.abs(dx)>2)moved=true;target+=dx*0.35;lastX=e.clientX;manual=Date.now()+1800;}});
+  function endd(){if(drag){drag=false;target=Math.round(target/ang)*ang;manual=Date.now()+1800;}}
+  stage.addEventListener("pointerup",endd);stage.addEventListener("pointercancel",endd);stage.addEventListener("lostpointercapture",endd);
+  stage.addEventListener("wheel",function(e){target-=e.deltaY*0.05;manual=Date.now()+1400;},{passive:true});
+  stage.querySelector(".prev").addEventListener("click",function(){target=Math.round(target/ang)*ang+ang;manual=Date.now()+1800;});
+  stage.querySelector(".next").addEventListener("click",function(){target=Math.round(target/ang)*ang-ang;manual=Date.now()+1800;});
+  // prevent an accidental drag from triggering the card's link
+  ring.addEventListener("click",function(e){if(moved&&e.target.closest("a")){e.preventDefault();}},true);
+  var last=-1;
+  (function frame(){
+    if(!drag&&Date.now()>manual&&!R)target-=0.13;
+    rot+=(target-rot)*0.09;
+    ring.style.transform="translate(-50%,-50%) rotateY("+rot.toFixed(2)+"deg)";
+    var front=((Math.round(-rot/ang))%N+N)%N;
+    if(front!==last){for(var i=0;i<N;i++)cards[i].classList.toggle("active",i===front);last=front;}
+    requestAnimationFrame(frame);
+  })();
+})();
 
 /* Scramble/decode effect */
 function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textContent;el.setAttribute("data-t",fin);var ch="ABCDEFGHIJKLMNOPQRSTUVWXYZ",fr=0;var iv=setInterval(function(){el.textContent=fin.split("").map(function(c,i){return c===" "?" ":(i<fr?fin[i]:ch[Math.floor(Math.random()*26)]);}).join("");fr+=1.5;if(fr>fin.length){clearInterval(iv);el.textContent=fin;}},26);}
