@@ -103,12 +103,22 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 /* 3D orbit of service cards around a glowing globe */
 .orbit-stage{position:relative;height:560px;perspective:1500px;margin-top:26px;touch-action:pan-y;cursor:grab}
 .orbit-stage:active{cursor:grabbing}
-.globe{position:absolute;top:calc(50% - 30px);left:50%;width:172px;height:172px;margin:-86px 0 0 -86px;border-radius:50%;
-  background:radial-gradient(circle at 34% 30%,#c7d2fe,#6366f1 42%,#312e81 72%,#0b1030);
-  box-shadow:0 0 90px rgba(99,102,241,.5),0 0 34px rgba(34,211,238,.35),inset -18px -22px 50px rgba(0,0,0,.55),inset 14px 14px 40px rgba(199,210,254,.22);
-  animation:gspin 22s linear infinite}
-.globe:after{content:"";position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(129,140,248,.55),transparent 42%);-webkit-mask:radial-gradient(circle,transparent 59%,#000 60%);mask:radial-gradient(circle,transparent 59%,#000 60%);animation:gspin 9s linear infinite reverse}
+.globe{position:absolute;top:calc(50% - 30px);left:50%;width:178px;height:178px;margin:-89px 0 0 -89px;border-radius:50%;
+  background:radial-gradient(circle at 32% 26%,#ffffff,#e0e7ff 8%,#818cf8 34%,#6d28d9 60%,#3b1d8f 80%,#180c40);
+  box-shadow:0 0 96px rgba(99,102,241,.5),0 0 50px rgba(168,85,247,.4),0 0 28px rgba(34,211,238,.34),inset -16px -20px 48px rgba(0,0,0,.55),inset 12px 12px 38px rgba(224,231,255,.25);
+  animation:gatmo 6s ease-in-out infinite}
+.globe:before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,rgba(99,102,241,.95),rgba(168,85,247,.95),rgba(236,72,153,.9),rgba(34,211,238,.95),rgba(99,102,241,.95));
+  -webkit-mask:radial-gradient(circle,#000 64%,transparent 73%);mask:radial-gradient(circle,#000 64%,transparent 73%);
+  mix-blend-mode:screen;opacity:.62;filter:blur(3px) saturate(1.35);
+  animation:gspin 14s linear infinite,ghue 9s linear infinite}
+.globe:after{content:"";position:absolute;inset:-4px;border-radius:50%;
+  background:conic-gradient(from 90deg,transparent,rgba(224,231,255,.85),transparent 28%,rgba(34,211,238,.7),transparent 58%,rgba(236,72,153,.55),transparent 82%);
+  -webkit-mask:radial-gradient(circle,transparent 59%,#000 60%);mask:radial-gradient(circle,transparent 59%,#000 60%);
+  animation:gspin 7s linear infinite reverse}
 @keyframes gspin{to{transform:rotate(360deg)}}
+@keyframes ghue{to{filter:blur(3px) saturate(1.35) hue-rotate(360deg)}}
+@keyframes gatmo{0%,100%{filter:brightness(1)}50%{filter:brightness(1.14)}}
 .ring{position:absolute;top:calc(50% - 30px);left:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
 .oc{position:absolute;width:236px;height:284px;left:-118px;top:-142px;
   background:rgba(16,20,38,.72);border:1px solid var(--line);border-radius:20px;padding:30px 26px;overflow:hidden;
@@ -128,7 +138,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .oarrow:hover{border-color:#8b93ff;background:var(--panel2);transform:translateY(-2px)}
 .ohint{color:var(--muted);font-size:12.5px;letter-spacing:.03em}
 @media(max-width:620px){.orbit-stage{height:470px}.oc{width:196px;height:250px;left:-98px;top:-125px;padding:24px 20px}.globe{width:128px;height:128px;margin:-64px 0 0 -64px}.oc p{font-size:13px}}
-@media(prefers-reduced-motion:reduce){.globe,.globe:after{animation:none}}
+@media(prefers-reduced-motion:reduce){.globe,.globe:before,.globe:after{animation:none}}
 
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
 .steps:before{content:"";position:absolute;top:26px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.4),transparent)}
@@ -472,7 +482,7 @@ if(fine&&!R){var pl=D.getElementById("pl");addEventListener("mousemove",function
   ring.addEventListener("click",function(e){if(moved&&e.target.closest("a")){e.preventDefault();}},true);
   var last=-1;
   (function frame(){
-    if(!drag&&Date.now()>manual&&!R)target-=0.13;
+    if(!drag&&Date.now()>manual&&!R)target-=0.19;
     rot+=(target-rot)*0.09;
     ring.style.transform="translate(-50%,-50%) rotateY("+rot.toFixed(2)+"deg)";
     var front=((Math.round(-rot/ang))%N+N)%N;
