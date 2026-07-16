@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viz Cloud Technologies — Demo</title>
-<meta name="description" content="Viz Cloud Technologies — a strategic technology &amp; staffing partner. Salesforce, DevOps, SAP, Big Data, AI, Cloud Hosting. (Animated demo showcase.)">
+<title>Viz Cloud Technologies</title>
+<meta name="description" content="Viz Cloud Technologies — a strategic technology &amp; staffing partner. Salesforce, DevOps, SAP, Big Data, AI, Cloud Hosting.">
 <meta name="theme-color" content="#06070d">
-<meta property="og:title" content="Viz Cloud Technologies — Demo">
+<meta property="og:title" content="Viz Cloud Technologies">
 <meta property="og:description" content="A strategic technology &amp; staffing partner. Ready for the future.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='%2306070d'/%3E%3Cpath d='M24 26h13l13 34 13-34h13L58 74H42z' fill='url(%23g)'/%3E%3C/svg%3E">
 <style>
 @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false;}
 :root{
-  --bg:#06070d;--bg2:#0b0e1c;--panel:rgba(255,255,255,.035);--panel2:rgba(255,255,255,.06);
+  --bg:rgba(8,10,20,.55);--bg2:rgba(14,18,38,.55);--solid:#05060f;--panel:rgba(255,255,255,.035);--panel2:rgba(255,255,255,.06);
   --line:rgba(255,255,255,.09);--ink:#f4f6fb;--text:#aab3c7;--muted:#6d7691;
   --grad:linear-gradient(110deg,#818cf8,#c084fc,#22d3ee);--maxw:1200px;--ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--solid);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
@@ -34,12 +34,30 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:800
 .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:translate(-50%,-50%) scale(0);animation:rip .6s ease-out;pointer-events:none}
 @keyframes rip{to{transform:translate(-50%,-50%) scale(18);opacity:0}}
 
-#pre{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .7s ease,visibility .7s}
-#pre.done{opacity:0;visibility:hidden}
-#pre .mk{font-size:30px;font-weight:800;letter-spacing:.02em}
-#pre .track{width:180px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
-#pre .track i{display:block;height:100%;width:0;background:var(--grad);animation:load 1.1s var(--ease) forwards}
-@keyframes load{to{width:100%}}
+/* Intro animation (shown ~1.5s on load, exits with a circular wipe) */
+#pre{position:fixed;inset:0;z-index:1000;background:radial-gradient(900px 600px at 50% 42%,#101736,#05060f 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;clip-path:circle(141% at 50% 50%)}
+#pre.done{animation:preout .75s var(--ease) forwards}
+@keyframes preout{to{clip-path:circle(0% at 50% 50%);visibility:hidden}}
+.pmark{position:relative;width:88px;height:88px;border-radius:24px;background:conic-gradient(from 210deg,#6366f1,#a855f7,#ec4899,#22d3ee,#6366f1);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px rgba(99,102,241,.6);animation:pmpop .9s var(--ease) both}
+.pmark span{font-size:42px;font-weight:800;color:#fff}
+.pmark i{position:absolute;inset:0;border-radius:24px;border:2px solid rgba(129,140,248,.55);animation:pring 1.5s ease-out infinite}
+.pmark i:nth-child(3){animation-delay:.38s}.pmark i:nth-child(4){animation-delay:.76s}
+@keyframes pring{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.15);opacity:0}}
+@keyframes pmpop{0%{transform:scale(.4) rotate(-14deg);opacity:0}60%{transform:scale(1.08) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+#pre .mk{font-size:clamp(19px,4vw,30px);font-weight:800;animation:mkin 1.2s var(--ease) both .15s}
+@keyframes mkin{0%{opacity:0;letter-spacing:.7em;filter:blur(8px)}100%{opacity:1;letter-spacing:.12em;filter:blur(0)}}
+.psub{color:var(--muted);font-size:12px;letter-spacing:.34em;text-transform:uppercase;animation:mkin 1.3s var(--ease) both .4s}
+
+/* Page-wide animated aurora backdrop (sections are translucent over it) */
+#aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+#aurora i{position:absolute;border-radius:50%;will-change:transform}
+#aurora .a1{width:64vw;height:64vw;background:radial-gradient(circle,rgba(99,102,241,.34),transparent 62%);top:-22vw;left:-16vw;animation:aur1 34s ease-in-out infinite}
+#aurora .a2{width:58vw;height:58vw;background:radial-gradient(circle,rgba(168,85,247,.26),transparent 62%);top:28%;right:-22vw;animation:aur2 42s ease-in-out infinite}
+#aurora .a3{width:52vw;height:52vw;background:radial-gradient(circle,rgba(34,211,238,.22),transparent 62%);bottom:-18vw;left:8vw;animation:aur3 48s ease-in-out infinite}
+#aurora .a4{width:46vw;height:46vw;background:radial-gradient(circle,rgba(236,72,153,.16),transparent 62%);top:56%;left:44%;animation:aur1 56s ease-in-out infinite reverse}
+@keyframes aur1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(9vw,7vh) scale(1.16)}}
+@keyframes aur2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-11vw,-9vh) scale(1.12)}}
+@keyframes aur3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(7vw,-11vh) scale(1.2)}}
 
 .cur,.cur-d{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:900;mix-blend-mode:difference}
 .cur{width:34px;height:34px;border:1.5px solid #fff;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
@@ -151,8 +169,10 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .stat .lab{margin-top:12px;color:var(--muted);font-size:14.5px}
 
 .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ind{display:flex;align-items:center;gap:14px;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;transition:transform .25s var(--ease),border-color .25s,background .25s}
+.ind{display:flex;align-items:center;gap:14px;padding:22px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px;cursor:pointer;transition:transform .25s var(--ease),border-color .25s,background .25s}
 .ind:hover{transform:translateY(-4px);border-color:rgba(129,140,248,.5);background:var(--panel2)}
+.ind .ask{margin-left:auto;font-size:12px;font-weight:700;color:#a5b4fc;opacity:0;transform:translateX(-6px);transition:.25s var(--ease);white-space:nowrap}
+.ind:hover .ask{opacity:1;transform:none}
 .ind .d{width:9px;height:9px;border-radius:50%;background:var(--grad);flex:0 0 auto;box-shadow:0 0 12px rgba(129,140,248,.7)}
 .ind span{color:#dbe1ee;font-weight:600;font-size:15.5px}
 
@@ -162,7 +182,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .post .thumb{height:170px;position:relative;overflow:hidden}
 .post .thumb i{position:absolute;inset:0;opacity:.9;transition:transform .5s var(--ease)}
 .post:hover .thumb i{transform:scale(1.08)}
-.post .p1{background:linear-gradient(135deg,#4338ca,#0891b2)}.post .p2{background:linear-gradient(135deg,#7c3aed,#db2777)}.post .p3{background:linear-gradient(135deg,#0e7490,#4f46e5)}
+.post .p1,#art .p1{background:linear-gradient(135deg,#4338ca,#0891b2)}.post .p2,#art .p2{background:linear-gradient(135deg,#7c3aed,#db2777)}.post .p3,#art .p3{background:linear-gradient(135deg,#0e7490,#4f46e5)}
 .post .thumb:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.25),transparent 55%)}
 .post .body{padding:24px}
 .post .tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a5b4fc}
@@ -180,7 +200,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .cform-ok{margin:24px auto 0;max-width:580px;padding:15px 22px;border-radius:12px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35);color:#a5f3fc;font-size:14.5px}
 @media(max-width:620px){.cform .btn{flex:1 1 100%}}
 
-footer{border-top:1px solid var(--line);background:#05060b;padding:70px 0 34px}
+footer{border-top:1px solid var(--line);background:rgba(4,6,12,.72);padding:70px 0 34px}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px}
 footer .logo{margin-bottom:18px}
 footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
@@ -212,7 +232,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 .menu a.on{color:#fff}
 .menu a.on:after{transform:scaleX(1)}
 
-/* AI assistant (demo, rule-based) */
+/* AI assistant (rule-based) */
 #bot{position:fixed;left:22px;bottom:22px;z-index:950}
 #bot-fab{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;position:relative;background:linear-gradient(135deg,#6366f1,#22d3ee);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(99,102,241,.5);transition:transform .2s var(--ease),box-shadow .2s}
 #bot-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 42px rgba(99,102,241,.65)}
@@ -245,12 +265,32 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 .bsend{width:44px;border:none;border-radius:11px;background:linear-gradient(135deg,#6366f1,#22d3ee);color:#fff;cursor:pointer;font-size:15px;transition:transform .15s}
 .bsend:hover{transform:translateY(-2px)}
 
-@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}.btyping i{animation:none}}
+/* Insight article reader */
+#art{position:fixed;inset:0;z-index:970;display:flex;align-items:center;justify-content:center;padding:22px}
+#art[hidden]{display:none}
+.art-back{position:absolute;inset:0;background:rgba(4,5,12,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.art-card{position:relative;width:min(92vw,620px);max-height:84vh;overflow:auto;background:#0d1124;border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 100px rgba(0,0,0,.7);animation:artin .35s var(--ease)}
+@keyframes artin{0%{opacity:0;transform:translateY(22px) scale(.97)}100%{opacity:1;transform:none}}
+.art-banner{height:150px;position:relative;overflow:hidden}
+.art-banner i{position:absolute;inset:0}
+.art-banner:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.25),transparent 55%)}
+.art-x{position:absolute;top:14px;right:14px;z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(5,6,15,.55);color:#fff;font-size:19px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:.15s}
+.art-x:hover{background:rgba(255,255,255,.16)}
+.art-body{padding:26px 28px 30px}
+#art .tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a5b4fc}
+.art-body h3{font-size:24px;margin:10px 0 14px}
+.art-body p{font-size:14.5px;color:#b9c2d8;margin-bottom:14px;line-height:1.75}
+.art-cta{margin-top:8px;padding:13px 24px;font-size:13.5px}
+.art-card::-webkit-scrollbar{width:8px}.art-card::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:8px}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}.btyping i{animation:none}#aurora i,.pmark i{animation:none}}
 </style>
 </head>
 <body>
 
-<div id="pre"><div class="mk grad">VIZ CLOUD TECHNOLOGIES</div><div class="track"><i></i></div></div>
+<div id="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i></div>
+
+<div id="pre"><div class="pmark"><span>V</span><i></i><i></i><i></i></div><div class="mk grad">VIZ CLOUD TECHNOLOGIES</div><div class="psub">Ready for the future</div></div>
 <div class="cur"></div><div class="cur-d"></div><div id="spot"></div>
 
 <header id="hdr">
@@ -350,12 +390,12 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">Industries</span><h2>Deep expertise, <span class="grad">every sector</span></h2><p>Cross-industry pattern recognition, tailored to your market's realities.</p></div>
     <div class="grid6">
-      <div class="ind reveal"><span class="d"></span><span>Financial Services</span></div>
-      <div class="ind reveal"><span class="d"></span><span>Healthcare &amp; Life Sciences</span></div>
-      <div class="ind reveal"><span class="d"></span><span>Retail &amp; Consumer</span></div>
-      <div class="ind reveal"><span class="d"></span><span>Manufacturing</span></div>
-      <div class="ind reveal"><span class="d"></span><span>Energy &amp; Utilities</span></div>
-      <div class="ind reveal"><span class="d"></span><span>Public Sector</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Financial Services</span><span class="ask">Ask ↗</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Healthcare &amp; Life Sciences</span><span class="ask">Ask ↗</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Retail &amp; Consumer</span><span class="ask">Ask ↗</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Manufacturing</span><span class="ask">Ask ↗</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Energy &amp; Utilities</span><span class="ask">Ask ↗</span></div>
+      <div class="ind reveal"><span class="d"></span><span>Public Sector</span><span class="ask">Ask ↗</span></div>
     </div>
   </div>
 </section>
@@ -381,7 +421,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <input name="msg" placeholder="How can we help?" aria-label="How can we help?">
       <button type="submit" class="btn btn-primary">Start a conversation →</button>
     </form>
-    <div class="cform-ok" id="cok" hidden>✓ Thanks! This is a demo — in production your message would reach the team.</div>
+    <div class="cform-ok" id="cok" hidden>✓ Thanks! Your details are with the VizCloud team — we’ll be in touch shortly.</div>
   </div>
 </section>
 
@@ -397,7 +437,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <div class="fcol"><h4>Get in touch</h4><a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a><a href="tel:+14084250981">+1 (408) 425-0981</a><a href="#top-anchor">774 Burgoyne Street, Mountain View, CA-94043</a></div>
     </div>
     <div class="fbot">
-      <span>© <span id="yr"></span> Viz Cloud Technologies · Demo showcase</span>
+      <span>© <span id="yr"></span> Viz Cloud Technologies · Ready for the future</span>
       <div class="socials">
         <a href="https://www.linkedin.com/company/vizcloudtech" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-.9 1.8-1.9 3.6-1.9 3.9 0 4.6 2.5 4.6 5.8V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
         <a href="https://www.facebook.com/vizcloudtech" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13 22v-8h3l1-4h-4V8c0-1 .3-1.7 1.8-1.7H17V2.8C16.4 2.7 15.3 2.6 14 2.6 11.2 2.6 9 4.3 9 7.6V10H6v4h3v8z"/></svg></a>
@@ -406,12 +446,27 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   </div>
 </footer>
 
-<!-- AI assistant (demo, rule-based — answers from this page's content) -->
+<!-- Insight article reader -->
+<div id="art" role="dialog" aria-modal="true" aria-label="Insight article" hidden>
+  <div class="art-back"></div>
+  <div class="art-card">
+    <div class="art-banner"><i></i></div>
+    <button class="art-x" aria-label="Close article">×</button>
+    <div class="art-body">
+      <span class="tag" id="art-tag"></span>
+      <h3 id="art-h"></h3>
+      <div id="art-p"></div>
+      <a href="#contact" class="btn btn-primary art-cta">Discuss this with us →</a>
+    </div>
+  </div>
+</div>
+
+<!-- AI assistant (rule-based — answers from this page's content) -->
 <div id="bot">
   <div id="bot-panel" role="dialog" aria-label="VizCloud assistant" aria-hidden="true">
     <div class="bhead">
       <div class="bav">V</div>
-      <div><div class="bname">VizCloud Assistant</div><div class="bstat">Online · demo</div></div>
+      <div><div class="bname">VizCloud Assistant</div><div class="bstat">Online</div></div>
       <button class="bclose" aria-label="Close chat">×</button>
     </div>
     <div class="bbody" id="bbody" aria-live="polite"></div>
@@ -439,9 +494,9 @@ var R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 var fine=matchMedia("(pointer:fine)").matches;
 var D=document;
 
-addEventListener("load",function(){setTimeout(function(){D.getElementById("pre").classList.add("done");},900);});
+addEventListener("load",function(){setTimeout(function(){D.getElementById("pre").classList.add("done");},1400);});
 
-/* Demo contact form */
+/* Contact form (front-end; wire to a backend to deliver) */
 (function(){var cf=D.getElementById("cform");if(!cf)return;cf.addEventListener("submit",function(e){e.preventDefault();var n=cf.name,em=cf.email;if(!n.value.trim()||!em.value.trim()||!/.+@.+\..+/.test(em.value)){(!n.value.trim()?n:em).focus();return;}cf.style.display="none";var ok=D.getElementById("cok");if(ok)ok.hidden=false;});})();
 
 /* Scrollspy: highlight the nav link of the section in view */
@@ -453,7 +508,7 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
   Object.keys(map).forEach(function(id){so.observe(D.getElementById(id));});
 })();
 
-/* AI assistant (rule-based demo: answers from this page's content; hard
+/* AI assistant (rule-based: answers from this page's content; hard
    questions fall back to collecting name -> email -> context for follow-up) */
 (function(){
   var bot=D.getElementById("bot");if(!bot)return;
@@ -472,7 +527,7 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
       if(m(/^(cancel|stop|never ?mind|no thanks)$/)){mode="faq";lead={};return "No problem — cancelled. Anything else I can answer?";}
       if(mode==="lead-name"){lead.name=q.trim();mode="lead-email";return "Thanks, "+lead.name+"! What's the best email to reach you at?";}
       if(mode==="lead-email"){if(!/.+@.+\..+/.test(q))return "Hmm, that email doesn't look quite right — mind re-typing it? (or type 'cancel')";lead.email=q.trim();mode="lead-ctx";return "Got it. Briefly — what would you like to discuss?";}
-      if(mode==="lead-ctx"){lead.ctx=q.trim();mode="faq";var s="Perfect — thanks, "+lead.name+"! The VizCloud team will reach out to you at "+lead.email+" about “"+lead.ctx+"”. (This is a demo, so nothing was actually sent.) Anything else I can answer?";lead={};return s;}
+      if(mode==="lead-ctx"){lead.ctx=q.trim();mode="faq";var s="Perfect — thanks, "+lead.name+"! The VizCloud team will reach out to you at "+lead.email+" about “"+lead.ctx+"”. Anything else I can answer?";lead={};return s;}
     }
     if(m(/\b(hi|hello|hey)\b|good (morning|afternoon|evening)/))return "Hello! 👋 Ask me about what VizCloud does, our services, how we work, or how to get in touch.";
     if(m(/\b(thanks|thank you|awesome|perfect)\b/))return "You're welcome! Anything else you'd like to know?";
@@ -499,7 +554,7 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
     add("user",q);input.value="";
     var a=answer(q);
     if(a){reply(a);}
-    else{mode="lead-name";reply("That's a great question — but it's a bit beyond what I can answer in this demo 😅. I can have the VizCloud team reach out to you personally. What's your name? (or type 'cancel')");}
+    else{mode="lead-name";reply("That's a great question — it's a bit beyond me 😅. I can have the VizCloud team reach out to you personally. What's your name? (or type 'cancel')");}
   }
   function open(){bot.classList.add("open");panel.setAttribute("aria-hidden","false");
     if(!opened){opened=true;reply("Hi! 👋 I'm the VizCloud assistant. Ask me about the company, our services, how we work, or how to get in touch.");setChips(HOME_CHIPS);}
@@ -509,6 +564,50 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
   panel.querySelector(".bclose").addEventListener("click",close);
   D.addEventListener("keydown",function(e){if(e.key==="Escape"&&bot.classList.contains("open"))close();});
   form.addEventListener("submit",function(e){e.preventDefault();send(null);});
+
+  /* Industry tiles: click -> ask the assistant about that industry */
+  var IND={
+    "Financial Services":"In Financial Services we help firms modernize core platforms, strengthen compliance and reporting, and put data & AI to work for smarter decisions — with talent who know the domain.",
+    "Healthcare & Life Sciences":"In Healthcare & Life Sciences we support secure, compliant platforms, well-connected data, and analytics that help teams improve outcomes.",
+    "Retail & Consumer":"In Retail & Consumer we help brands unify commerce and CRM, personalize experiences with data & AI, and scale infrastructure for peak demand.",
+    "Manufacturing":"In Manufacturing we connect operations data, modernize ERP (including SAP), and automate processes to lift efficiency across the plant and supply chain.",
+    "Energy & Utilities":"In Energy & Utilities we help modernize critical systems, harness operational data, and build resilient cloud platforms that keep essential services running.",
+    "Public Sector":"In the Public Sector we deliver secure, dependable technology and the right people for mission-critical programs."};
+  [].forEach.call(D.querySelectorAll(".ind"),function(el){
+    el.addEventListener("click",function(){
+      var name=(el.querySelectorAll("span")[1]||el).textContent.trim();
+      if(!bot.classList.contains("open"))open();
+      var tries=0;(function go(){if(busy&&tries++<40)return setTimeout(go,150);add("user",name);reply(IND[name]||("We work extensively in "+name+". "+CONTACT));})();
+    });
+  });
+})();
+
+/* Insight cards: "Read more" opens an in-page article reader */
+(function(){
+  var art=D.getElementById("art");if(!art)return;
+  var data=[
+    {tag:"AI",h:"Putting generative AI to work — safely",cls:"p1",ps:[
+      "Most generative-AI programs stall somewhere between an impressive pilot and dependable production value. The gap is rarely the model — it's the operating discipline around it.",
+      "The approach that works: tie every use case to a business metric, ground models in your own data, and put guardrails and human review where the risk actually lives. Small, instrumented releases beat big-bang launches every time.",
+      "Done this way, AI compounds — each shipped use case builds the data, the patterns and the confidence that make the next one faster."]},
+    {tag:"Cloud",h:"The modern platform advantage",cls:"p2",ps:[
+      "Cloud stopped being an infrastructure decision a long time ago — it's an operating model. The companies that lead their categories ship faster because their platforms make the safe path the easy path.",
+      "That means cloud-native architecture, automated delivery pipelines, and platform teams that treat internal developers as customers. Resilience and cost-efficiency follow from the same design choices.",
+      "The payoff is momentum: ideas reach production in days instead of quarters, and the platform gets stronger with every release."]},
+    {tag:"Talent",h:"Closing critical roles, faster",cls:"p3",ps:[
+      "Critical roles stay open when search is treated as a volume game. Disciplined search starts by understanding the context and culture a candidate will actually work in.",
+      "That's why our benchmark is closing positions within the first five profiles — even for niche, hard-to-fill requirements. Fewer, better-matched candidates move faster through every stage.",
+      "It shows after the hire too: better matches stay. That's how a 95%+ placement retention rate gets built."]}];
+  var tagEl=D.getElementById("art-tag"),hEl=D.getElementById("art-h"),pEl=D.getElementById("art-p"),ban=art.querySelector(".art-banner i");
+  function openArt(i){var a=data[i];if(!a)return;tagEl.textContent=a.tag;hEl.textContent=a.h;ban.className=a.cls;pEl.innerHTML="";
+    a.ps.forEach(function(tx){var p=D.createElement("p");p.textContent=tx;pEl.appendChild(p);});
+    art.hidden=false;D.body.style.overflow="hidden";}
+  function closeArt(){art.hidden=true;D.body.style.overflow="";}
+  [].forEach.call(D.querySelectorAll(".post .rd"),function(a,i){a.addEventListener("click",function(e){e.preventDefault();openArt(i);});});
+  art.querySelector(".art-back").addEventListener("click",closeArt);
+  art.querySelector(".art-x").addEventListener("click",closeArt);
+  art.querySelector(".art-cta").addEventListener("click",closeArt);
+  D.addEventListener("keydown",function(e){if(e.key==="Escape"&&!art.hidden)closeArt();});
 })();
 D.getElementById("yr").textContent=new Date().getFullYear();
 
