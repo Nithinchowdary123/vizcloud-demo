@@ -332,8 +332,8 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 #snd.on{color:var(--acc);border-color:var(--acc)}
 #snd svg{width:19px;height:19px;fill:currentColor}
 @media(max-width:900px){#snd{left:auto;right:20px;bottom:86px}}
-/* Holographic sheen on cards */
-.oc,.post{position:relative}
+/* Holographic sheen on cards (.oc is already position:absolute in the orbit) */
+.post{position:relative}
 .holo{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.16) 45%,rgba(var(--a3r),.26) 50%,rgba(255,255,255,.16) 55%,transparent 70%);background-size:240% 240%;mix-blend-mode:screen;z-index:3}
 .oc:hover .holo,.post:hover .holo{opacity:1}
 /* Glitch decode on headings */
