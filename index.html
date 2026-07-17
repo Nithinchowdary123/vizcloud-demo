@@ -120,7 +120,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 /* 3D orbit of service cards around a glowing globe */
-.orbit-stage{position:relative;height:560px;perspective:1500px;margin-top:26px;touch-action:pan-y;cursor:grab}
+.orbit-stage{position:relative;height:500px;perspective:1400px;margin-top:26px;touch-action:pan-y;cursor:grab}
 .orbit-stage:active{cursor:grabbing}
 .globe{position:absolute;top:calc(50% - 30px);left:50%;width:178px;height:178px;margin:-89px 0 0 -89px;border-radius:50%;
   background:radial-gradient(circle at 32% 26%,#ffffff,#e0e7ff 8%,#818cf8 34%,#6d28d9 60%,#3b1d8f 80%,#180c40);
@@ -139,7 +139,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 @keyframes ghue{to{filter:blur(3px) saturate(1.35) hue-rotate(360deg)}}
 @keyframes gatmo{0%,100%{filter:brightness(1)}50%{filter:brightness(1.14)}}
 .ring{position:absolute;top:calc(50% - 30px);left:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
-.oc{position:absolute;width:236px;height:284px;left:-118px;top:-142px;
+.oc{position:absolute;width:210px;height:258px;left:-105px;top:-129px;
   background:rgba(16,20,38,.72);border:1px solid var(--line);border-radius:20px;padding:30px 26px;overflow:hidden;
   -webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:0 20px 50px rgba(0,0,0,.45);transition:opacity .45s,box-shadow .45s,border-color .45s}
@@ -156,7 +156,7 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .oarrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(11,14,28,.7);color:#fff;font-size:20px;line-height:1;cursor:pointer;transition:.2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .oarrow:hover{border-color:#8b93ff;background:var(--panel2);transform:translateY(-2px)}
 .ohint{color:var(--muted);font-size:12.5px;letter-spacing:.03em}
-@media(max-width:620px){.orbit-stage{height:470px}.oc{width:196px;height:250px;left:-98px;top:-125px;padding:24px 20px}.globe{width:128px;height:128px;margin:-64px 0 0 -64px}.oc p{font-size:13px}}
+@media(max-width:620px){.orbit-stage{height:470px}.oc{width:186px;height:236px;left:-93px;top:-118px;padding:22px 18px}.globe{width:128px;height:128px;margin:-64px 0 0 -64px}.oc p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.globe,.globe:before,.globe:after{animation:none}}
 
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
@@ -326,16 +326,6 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* Matrix rain (mode) */
 #matrix{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s}
 #matrix.on{opacity:.9}
-/* HUD telemetry widget */
-#hud{position:fixed;left:20px;bottom:96px;z-index:480;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;line-height:1.7;color:var(--muted);letter-spacing:.06em;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:rgba(8,11,22,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);pointer-events:none;min-width:152px}
-#hud .hrow{display:flex;justify-content:space-between;gap:14px}
-#hud b{color:#cfd6e6;font-weight:600}
-#hud .ok{color:#5ff2b0}
-#hud .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399;margin-right:5px;animation:hpulse 1.6s infinite}
-@keyframes hpulse{0%,100%{opacity:1}50%{opacity:.35}}
-#hud .bar{height:3px;border-radius:2px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden}
-#hud .bar i{display:block;height:100%;background:var(--grad);width:60%;transition:width .3s}
-@media(max-width:900px){#hud{display:none}}
 /* Sound toggle */
 #snd{position:fixed;left:20px;bottom:20px;z-index:500;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(8,11,22,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#c3cadb;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
 #snd:hover{border-color:var(--acc);color:#fff;transform:translateY(-2px)}
@@ -369,13 +359,6 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 <canvas id="matrix" aria-hidden="true"></canvas>
 <div id="grid" aria-hidden="true"></div>
 
-<div id="hud" aria-hidden="true">
-  <div class="hrow"><span><span class="dot"></span>SYSTEMS</span><b class="ok">ONLINE</b></div>
-  <div class="hrow"><span>FPS</span><b id="hud-fps">60</b></div>
-  <div class="hrow"><span>NODES</span><b id="hud-nodes">0</b></div>
-  <div class="hrow"><span>UPLINK</span><b id="hud-clock">00:00:00</b></div>
-  <div class="bar"><i id="hud-bar"></i></div>
-</div>
 <button id="snd" aria-label="Toggle sound" title="Sound (off)">
   <svg viewBox="0 0 24 24" id="snd-ico"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16 8a5 5 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
 </button>
@@ -849,7 +832,7 @@ if(fine&&!R){var pl=D.getElementById("pl");addEventListener("mousemove",function
 (function(){
   var stage=D.getElementById("orbit"),ring=D.getElementById("ring");if(!ring)return;
   var cards=[].slice.call(ring.children),N=cards.length,ang=360/N,radius=320;
-  function place(){radius=Math.min(266,Math.max(172,innerWidth*0.21));for(var i=0;i<N;i++)cards[i].style.transform="rotateY("+(i*ang)+"deg) translateZ("+radius+"px)";}
+  function place(){radius=Math.min(214,Math.max(150,innerWidth*0.19));for(var i=0;i<N;i++)cards[i].style.transform="rotateY("+(i*ang)+"deg) translateZ("+radius+"px)";}
   place();addEventListener("resize",place);
   var rot=0,target=0,drag=false,lastX=0,moved=false,manual=0;
   function guard(e){return e.target.closest("a,.oarrow");}
@@ -938,18 +921,6 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
   }
 })();
 
-/* HUD telemetry: FPS, node count, clock, activity bar */
-(function(){
-  var fpsEl=D.getElementById("hud-fps"),nodesEl=D.getElementById("hud-nodes"),clkEl=D.getElementById("hud-clock"),barEl=D.getElementById("hud-bar");
-  if(!fpsEl)return;
-  var frames=0,last=performance.now(),fps=60;
-  (function loop(t){frames++;if(t-last>=1000){fps=frames;frames=0;last=t;fpsEl.textContent=fps;
-      var nu=D.getElementById("neural");if(nu){nodesEl.textContent=Math.round(nu.width*nu.height/17000);}
-      barEl.style.width=(40+Math.round(Math.random()*55))+"%";}
-    requestAnimationFrame(loop);})(last);
-  function clock(){var d=new Date();clkEl.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(function(x){return(x<10?"0":"")+x;}).join(":");}
-  clock();setInterval(clock,1000);
-})();
 
 /* Sound design (opt-in): subtle WebAudio blips */
 var SND=(function(){
