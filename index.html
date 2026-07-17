@@ -406,7 +406,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 <div id="ai-load" aria-hidden="true">
   <canvas id="ai-canvas"></canvas>
   <div id="ai-flash"></div>
-  <div class="ai-label">VizCloud <span class="grad">AI</span><em>activated</em></div>
+  <div class="ai-label">VizCloud <span class="grad">AI</span><em>Projects Loading</em></div>
 </div>
 
 <section class="hero">
@@ -1025,16 +1025,23 @@ window.__glitch=function(h){if(R||!h)return;h.setAttribute("data-txt",h.textCont
   var CHARGE=1900,END=3100;   // ms: blast at CHARGE, finish at END
   function sound(){
     try{var c=new (window.AudioContext||window.webkitAudioContext)(),now=c.currentTime;
-      // charge sweep (rising tension)
-      var o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.setValueAtTime(70,now);o.frequency.exponentialRampToValueAtTime(920,now+1.85);o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.001,now);g.gain.exponentialRampToValueAtTime(.09,now+1.75);g.gain.exponentialRampToValueAtTime(.0001,now+1.95);o.start(now);o.stop(now+2);
-      // shimmer arpeggio during charge
-      [523,659,784,1047].forEach(function(f,i){var oo=c.createOscillator(),gg=c.createGain();oo.type="sine";oo.frequency.value=f;oo.connect(gg);gg.connect(c.destination);var t=now+.35+i*.34;gg.gain.setValueAtTime(0,t);gg.gain.linearRampToValueAtTime(.04,t+.02);gg.gain.exponentialRampToValueAtTime(.0001,t+.4);oo.start(t);oo.stop(t+.42);});
-      // BLAST at 1.9s: bass drop
-      var bt=now+1.9;var bo=c.createOscillator(),bg=c.createGain();bo.type="sine";bo.frequency.setValueAtTime(180,bt);bo.frequency.exponentialRampToValueAtTime(42,bt+.5);bo.connect(bg);bg.connect(c.destination);bg.gain.setValueAtTime(0,bt);bg.gain.linearRampToValueAtTime(.4,bt+.04);bg.gain.exponentialRampToValueAtTime(.0001,bt+.85);bo.start(bt);bo.stop(bt+.9);
-      // noise burst (explosion)
-      var dur=.55,buf=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate),dt=buf.getChannelData(0);for(var k=0;k<dt.length;k++){dt[k]=(Math.random()*2-1)*Math.pow(1-k/dt.length,2.2);}var ns=c.createBufferSource();ns.buffer=buf;var ng=c.createGain();ns.connect(ng);ng.connect(c.destination);ng.gain.setValueAtTime(.28,bt);ng.gain.exponentialRampToValueAtTime(.0001,bt+.55);ns.start(bt);
-      // bright shimmer at blast
-      var so=c.createOscillator(),sg=c.createGain();so.type="triangle";so.frequency.value=1568;so.connect(sg);sg.connect(c.destination);sg.gain.setValueAtTime(0,bt+.02);sg.gain.linearRampToValueAtTime(.09,bt+.07);sg.gain.exponentialRampToValueAtTime(.0001,bt+.7);so.start(bt+.02);so.stop(bt+.75);
+      var mst=c.createGain();mst.gain.value=1;mst.connect(c.destination);
+      // 1) ominous DETUNED sub-drone (slow beating = eerie), swells through charge
+      [39,39.7,58.5].forEach(function(f){var o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.value=f;o.connect(g);g.connect(mst);g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(.075,now+1.7);g.gain.linearRampToValueAtTime(0,now+2.9);o.start(now);o.stop(now+3);});
+      // 2) DISSONANT tension riser (root + tritone) climbing
+      [1,1.414].forEach(function(m,i){var o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.setValueAtTime(85*m,now);o.frequency.exponentialRampToValueAtTime(560*m,now+1.85);o.connect(g);g.connect(mst);g.gain.setValueAtTime(.001,now+.2);g.gain.exponentialRampToValueAtTime(i?.045:.07,now+1.78);g.gain.exponentialRampToValueAtTime(.0001,now+1.96);o.start(now+.1);o.stop(now+2);});
+      // 3) rising white-noise 'reverse riser' into the blast
+      var rb=c.createBuffer(1,Math.floor(c.sampleRate*1.9),c.sampleRate),rd=rb.getChannelData(0);for(var k=0;k<rd.length;k++)rd[k]=Math.random()*2-1;var rn=c.createBufferSource();rn.buffer=rb;var rf=c.createBiquadFilter();rf.type="bandpass";rf.Q.value=1.2;rf.frequency.setValueAtTime(260,now);rf.frequency.exponentialRampToValueAtTime(5000,now+1.9);var rg=c.createGain();rn.connect(rf);rf.connect(rg);rg.connect(mst);rg.gain.setValueAtTime(0,now);rg.gain.linearRampToValueAtTime(.14,now+1.86);rg.gain.linearRampToValueAtTime(0,now+1.95);rn.start(now);
+      // ---- BLAST at 1.9s ----
+      var bt=now+1.9;
+      // 4) deep sub boom (impact)
+      var bo=c.createOscillator(),bg=c.createGain();bo.type="sine";bo.frequency.setValueAtTime(120,bt);bo.frequency.exponentialRampToValueAtTime(26,bt+.7);bo.connect(bg);bg.connect(mst);bg.gain.setValueAtTime(0,bt);bg.gain.linearRampToValueAtTime(.55,bt+.03);bg.gain.exponentialRampToValueAtTime(.0001,bt+1.3);bo.start(bt);bo.stop(bt+1.35);
+      // 5) dark filtered explosion noise
+      var nb=c.createBuffer(1,Math.floor(c.sampleRate*.85),c.sampleRate),nd=nb.getChannelData(0);for(var k2=0;k2<nd.length;k2++)nd[k2]=(Math.random()*2-1)*Math.pow(1-k2/nd.length,1.5);var ns=c.createBufferSource();ns.buffer=nb;var nf=c.createBiquadFilter();nf.type="lowpass";nf.frequency.setValueAtTime(2000,bt);nf.frequency.exponentialRampToValueAtTime(180,bt+.75);var ng=c.createGain();ns.connect(nf);nf.connect(ng);ng.connect(mst);ng.gain.setValueAtTime(.4,bt);ng.gain.exponentialRampToValueAtTime(.0001,bt+.85);ns.start(bt);
+      // 6) SCARY dissonant metallic stab (minor + tritone, detuned)
+      [110,130.8,155.6,220.9].forEach(function(f){var o=c.createOscillator(),g=c.createGain();o.type="square";o.frequency.value=f;o.detune.value=(Math.random()-.5)*20;o.connect(g);g.connect(mst);g.gain.setValueAtTime(0,bt+.02);g.gain.linearRampToValueAtTime(.045,bt+.05);g.gain.exponentialRampToValueAtTime(.0001,bt+1.2);o.start(bt+.02);o.stop(bt+1.25);});
+      // 7) creepy high whine descending
+      var wo=c.createOscillator(),wg=c.createGain();wo.type="sawtooth";wo.frequency.setValueAtTime(2400,bt+.05);wo.frequency.exponentialRampToValueAtTime(360,bt+1.3);wo.connect(wg);wg.connect(mst);wg.gain.setValueAtTime(0,bt+.05);wg.gain.linearRampToValueAtTime(.04,bt+.12);wg.gain.exponentialRampToValueAtTime(.0001,bt+1.3);wo.start(bt+.05);wo.stop(bt+1.35);
     }catch(e){}
   }
   function run(){
