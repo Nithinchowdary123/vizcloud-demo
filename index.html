@@ -380,6 +380,49 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 .cur.lock:after{bottom:-1px;right:-1px;border-left:0;border-top:0}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;transform:none}.blob{animation:none}.btyping i{animation:none}#aurora i,.pmark i{animation:none}}
+
+/* ---- Feature: WebGL aurora shader (hero) ---- */
+#hero-gl{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.1s ease}
+#hero-gl.on{opacity:1}
+.hero .pl{z-index:1}
+
+/* ---- Feature: scroll-driven pinned scrollytelling ---- */
+.pinwrap{position:relative;height:340vh}
+.pinwrap.no-pin{height:auto}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.no-pin .pin{position:static;height:auto;padding:80px 0}
+.pin-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
+.pin-left{position:relative}
+.pin-eyebrow{display:inline-block;margin-bottom:22px}
+.pin-count{font-size:15px;font-weight:800;letter-spacing:.14em;color:var(--muted);margin-bottom:10px}
+.pin-count b{font-size:64px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-right:6px}
+.pin-stages{position:relative;min-height:290px}
+.pstage{position:absolute;inset:0;opacity:0;transform:translateY(26px);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.pstage.on{opacity:1;transform:none;pointer-events:auto}
+.no-pin .pin-stages{min-height:0}
+.no-pin .pstage{position:relative;opacity:1;transform:none;margin-bottom:32px}
+.pstage h2{font-size:clamp(30px,4.4vw,52px);font-weight:800;margin-bottom:14px}
+.pstage p{color:#c3cadb;font-size:17px;max-width:460px;line-height:1.6}
+.pstage .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.pstage .tags span{font-size:12px;font-weight:700;letter-spacing:.03em;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--acc);background:rgba(var(--a3r),.06)}
+.pin-bar{position:relative;height:4px;border-radius:4px;background:var(--line);margin-top:38px;overflow:hidden}
+.pin-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:4px;background:var(--grad);box-shadow:0 0 16px rgba(var(--a3r),.5)}
+.pin-dots{display:flex;gap:22px;margin-top:20px}
+.pin-dots button{background:none;border:0;cursor:pointer;font:inherit;color:var(--muted);font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;padding:0;transition:color .3s}
+.pin-dots button:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s}
+.pin-dots button.on{color:#e7ebf5}
+.pin-dots button.on:before{background:var(--grad);box-shadow:0 0 12px rgba(var(--a3r),.6);transform:scale(1.25)}
+.pin-vis{position:relative;aspect-ratio:1;max-width:440px;margin:0 auto;width:100%}
+.pin-core{position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(var(--a1r),.9),rgba(var(--a3r),.5) 60%,transparent 72%);box-shadow:0 0 60px rgba(var(--a3r),.4),inset 0 0 40px rgba(255,255,255,.15);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.pin-orbit{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(var(--a3r),.22);opacity:0;transform:scale(.6);transition:opacity .6s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.pin-orbit.show{opacity:1;transform:scale(1)}
+.pin-orbit.r2{inset:12%}
+.pin-orbit.r3{inset:24%}
+.pin-node{position:absolute;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px rgba(var(--a3r),.8);opacity:0;transform:scale(0);transition:opacity .45s ease,transform .55s cubic-bezier(.34,1.56,.64,1)}
+.pin-node.show{opacity:1;transform:scale(1)}
+.pin-ringrot{position:absolute;inset:0;animation:pinspin 26s linear infinite}
+@media(max-width:860px){.pin-grid{grid-template-columns:1fr;gap:36px}.pin-vis{max-width:300px;order:-1}.pinwrap{height:300vh}}
+@keyframes pinspin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -424,6 +467,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 
 <section class="hero">
   <canvas id="mesh"></canvas>
+  <canvas id="hero-gl" aria-hidden="true"></canvas>
   <div class="pl" id="pl"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
   <div class="wrap reveal-h">
     <span class="eyebrow">Viz Cloud Technologies</span>
@@ -481,6 +525,40 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <div class="step reveal"><div class="num">02</div><h3>Tailor</h3><p>We tailor bespoke solutions with the most appropriate methodology for each assignment.</p></div>
       <div class="step reveal"><div class="num">03</div><h3>Deliver</h3><p>We close positions within the first five profiles in the given time frame.</p></div>
       <div class="step reveal"><div class="num">04</div><h3>Sustain</h3><p>A proven track record of delivery and a 95%+ placement retention rate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pinwrap" id="journey" aria-label="How an engagement unfolds">
+  <div class="pin">
+    <div class="wrap">
+      <div class="pin-grid">
+        <div class="pin-left">
+          <span class="eyebrow pin-eyebrow">How an engagement unfolds</span>
+          <div class="pin-count"><b id="pnum">01</b>/ 03</div>
+          <div class="pin-stages" id="pstages">
+            <div class="pstage on"><h2>Discover</h2><p>We map your goals, systems and constraints — aligning on the outcome before a single line of code or a single profile is shipped.</p><div class="tags"><span>Discovery workshops</span><span>Architecture review</span><span>Roadmap</span></div></div>
+            <div class="pstage"><h2>Build</h2><p>Senior teams design, engineer and integrate — shipping in tight iterations with your stakeholders in the loop the whole way.</p><div class="tags"><span>Agile delivery</span><span>Cloud &amp; DevOps</span><span>Quality gates</span></div></div>
+            <div class="pstage"><h2>Scale</h2><p>We harden, hand over and grow with you — sustaining momentum with managed support and the right talent placed for the long run.</p><div class="tags"><span>Managed support</span><span>Talent placement</span><span>Continuous scale</span></div></div>
+          </div>
+          <div class="pin-bar"><i id="pbar"></i></div>
+          <div class="pin-dots" id="pdots">
+            <button class="on" data-s="0">Discover</button>
+            <button data-s="1">Build</button>
+            <button data-s="2">Scale</button>
+          </div>
+        </div>
+        <div class="pin-right">
+          <div class="pin-vis" id="pvis">
+            <div class="pin-ringrot">
+              <div class="pin-orbit r1 show"></div>
+              <div class="pin-orbit r2"></div>
+              <div class="pin-orbit r3"></div>
+            </div>
+            <div class="pin-core" id="pcore"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -917,6 +995,73 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
   function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;}size();addEventListener("resize",size);
   function draw(){t+=.003;ctx.clearRect(0,0,w,h);var cols=[THEME.a1,THEME.a2,THEME.a3];for(var i=0;i<3;i++){var c=cols[i],x=w*(.5+.36*Math.cos(t+i*2.1)),y=h*(.5+.36*Math.sin(t*1.15+i*1.7)),g=ctx.createRadialGradient(x,y,0,x,y,Math.max(w,h)*.5);g.addColorStop(0,rgba(c,.2));g.addColorStop(1,rgba(c,0));ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}requestAnimationFrame(draw);}
   draw();
+})();
+
+/* Feature: WebGL aurora shader behind hero (theme-reactive, cursor-reactive) */
+(function(){
+  var cv=D.getElementById("hero-gl");if(!cv)return;
+  var gl=null;try{gl=cv.getContext("webgl",{antialias:true,alpha:true,premultipliedAlpha:false})||cv.getContext("experimental-webgl",{alpha:true});}catch(e){}
+  if(!gl)return; /* graceful fallback: 2D mesh stays */
+  var vs="attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+  var fs="precision mediump float;uniform float t;uniform vec2 r;uniform vec2 m;uniform vec3 c1,c2,c3;"
+   +"float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}"
+   +"float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}"
+   +"float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=.5;}return v;}"
+   +"void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv;p.x*=r.x/r.y;float tt=t*.05;vec2 mm=(m-.5);"
+   +"vec2 q=vec2(fbm(p*2.2+tt),fbm(p*2.2+vec2(3.1)-tt));"
+   +"vec2 s=vec2(fbm(p*2.2+q*1.6+mm*.7+tt),fbm(p*2.2+q*1.6-mm*.7+vec2(1.7)));"
+   +"float f=fbm(p*2.2+s*2.2);vec3 col=mix(c1,c2,clamp(f*1.7,0.,1.));col=mix(col,c3,clamp(length(s)*.85,0.,1.));"
+   +"float glow=smoothstep(.1,1.,f);col*=.4+1.0*glow;float vig=smoothstep(1.15,.25,length(uv-.5));"
+   +"float alpha=(.30+.55*glow)*vig;gl_FragColor=vec4(col,alpha);}";
+  function sh(ty,src){var s=gl.createShader(ty);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))return null;return s;}
+  var v=sh(gl.VERTEX_SHADER,vs),fsh=sh(gl.FRAGMENT_SHADER,fs);if(!v||!fsh)return;
+  var prog=gl.createProgram();gl.attachShader(prog,v);gl.attachShader(prog,fsh);gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))return;
+  gl.useProgram(prog);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(prog,"p");gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uT=gl.getUniformLocation(prog,"t"),uR=gl.getUniformLocation(prog,"r"),uM=gl.getUniformLocation(prog,"m"),
+      uC1=gl.getUniformLocation(prog,"c1"),uC2=gl.getUniformLocation(prog,"c2"),uC3=gl.getUniformLocation(prog,"c3");
+  var hero=cv.parentNode,DPR=Math.min(devicePixelRatio||1,2),mx=.5,my=.5,tmx=.5,tmy=.5;
+  function size(){var w=hero.offsetWidth,h=hero.offsetHeight;cv.width=Math.max(1,w*DPR);cv.height=Math.max(1,h*DPR);cv.style.width=w+"px";cv.style.height=h+"px";gl.viewport(0,0,cv.width,cv.height);}
+  size();addEventListener("resize",size);
+  hero.addEventListener("pointermove",function(e){var b=hero.getBoundingClientRect();tmx=(e.clientX-b.left)/b.width;tmy=1-(e.clientY-b.top)/b.height;});
+  function cols(){gl.uniform3f(uC1,THEME.a1[0]/255,THEME.a1[1]/255,THEME.a1[2]/255);gl.uniform3f(uC2,THEME.a2[0]/255,THEME.a2[1]/255,THEME.a2[2]/255);gl.uniform3f(uC3,THEME.a3[0]/255,THEME.a3[1]/255,THEME.a3[2]/255);}
+  var mesh=D.getElementById("mesh");if(mesh)mesh.style.opacity="0";
+  cv.classList.add("on");
+  if(R){gl.uniform1f(uT,6.0);gl.uniform2f(uR,cv.width,cv.height);gl.uniform2f(uM,.5,.5);cols();gl.drawArrays(gl.TRIANGLES,0,3);return;}
+  var start=performance.now();
+  (function frame(now){mx+=(tmx-mx)*.05;my+=(tmy-my)*.05;gl.uniform1f(uT,(now-start)/1000);gl.uniform2f(uR,cv.width,cv.height);gl.uniform2f(uM,mx,my);cols();gl.drawArrays(gl.TRIANGLES,0,3);requestAnimationFrame(frame);})(start);
+})();
+
+/* Feature: scroll-driven pinned scrollytelling ("How an engagement unfolds") */
+(function(){
+  var wrap=D.getElementById("journey");if(!wrap)return;
+  var stages=[].slice.call(D.querySelectorAll("#pstages .pstage")),
+      dots=[].slice.call(D.querySelectorAll("#pdots button")),
+      bar=D.getElementById("pbar"),num=D.getElementById("pnum"),core=D.getElementById("pcore"),
+      orbits=[].slice.call(wrap.querySelectorAll(".pin-orbit"));
+  var counts=[6,5,4];
+  orbits.forEach(function(o,ri){for(var i=0;i<counts[ri];i++){var a=(i/counts[ri])*Math.PI*2-Math.PI/2;var el=D.createElement("span");el.className="pin-node";el.style.left=(50+50*Math.cos(a))+"%";el.style.top=(50+50*Math.sin(a))+"%";o.appendChild(el);}});
+  var cur=-1;
+  function setStage(s){
+    if(s===cur)return;cur=s;
+    stages.forEach(function(el,i){el.classList.toggle("on",i===s);});
+    dots.forEach(function(el,i){el.classList.toggle("on",i===s);});
+    num.textContent="0"+(s+1);
+    orbits.forEach(function(o,ri){var show=ri<=s;o.classList.toggle("show",show);[].forEach.call(o.querySelectorAll(".pin-node"),function(nd,ni){setTimeout(function(){nd.classList.toggle("show",show);},show?ni*55:0);});});
+    if(core)core.style.transform="scale("+(1+s*.12)+")";
+  }
+  function clamp(v,a,b){return v<a?a:v>b?b:v;}
+  if(R){wrap.classList.add("no-pin");stages.forEach(function(el){el.classList.add("on");});orbits.forEach(function(o){o.classList.add("show");[].forEach.call(o.querySelectorAll(".pin-node"),function(nd){nd.classList.add("show");});});if(bar)bar.style.width="100%";return;}
+  dots.forEach(function(b){b.addEventListener("click",function(){var s=+b.getAttribute("data-s");var total=wrap.offsetHeight-innerHeight;scrollTo({top:wrap.offsetTop+total*((s+.5)/stages.length),behavior:"smooth"});});});
+  var ticking=false;
+  function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;
+    var total=wrap.offsetHeight-innerHeight;var prog=clamp((-wrap.getBoundingClientRect().top)/total,0,1);
+    if(bar)bar.style.width=(prog*100).toFixed(1)+"%";
+    setStage(prog>=.66?2:prog>=.33?1:0);
+  });}
+  addEventListener("scroll",onScroll,{passive:true});addEventListener("resize",onScroll);onScroll();
 })();
 
 /* Command palette (⌘K) + accent swatches */
