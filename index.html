@@ -334,10 +334,11 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* Confetti */
 #confetti{position:fixed;inset:0;z-index:995;pointer-events:none}
 /* AI nav link (glowing) */
-.ai-link{position:relative;z-index:0;display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:999px;font-weight:800!important;font-size:13px;letter-spacing:.035em;white-space:nowrap;color:transparent;background:linear-gradient(110deg,var(--a1),var(--a3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:transform .2s,filter .2s}
-.ai-link:before{content:"";position:absolute;inset:0;z-index:-1;border-radius:999px;border:1px solid rgba(var(--a3r),.4);background:linear-gradient(110deg,rgba(var(--a1r),.12),rgba(var(--a3r),.12));box-shadow:0 0 20px rgba(var(--a3r),.18),inset 0 1px 0 rgba(255,255,255,.06);transition:.22s}
-.ai-link:hover{transform:translateY(-1px)}
-.ai-link:hover:before{border-color:rgba(var(--a3r),.9);background:linear-gradient(110deg,rgba(var(--a1r),.2),rgba(var(--a3r),.2));box-shadow:0 0 30px rgba(var(--a3r),.42),inset 0 1px 0 rgba(255,255,255,.1)}
+.ai-link{position:relative;z-index:0;display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:999px;font-weight:800!important;font-size:13px;letter-spacing:.035em;white-space:nowrap;background:linear-gradient(180deg,rgba(var(--a3r),.10),rgba(var(--a1r),.05));box-shadow:0 4px 20px rgba(var(--a3r),.14),inset 0 1px 0 rgba(255,255,255,.07);transition:transform .2s,box-shadow .22s}
+.ai-link:before{content:"";position:absolute;inset:0;border-radius:999px;padding:1.4px;background:linear-gradient(110deg,var(--a1),var(--a3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.7;transition:.22s;pointer-events:none}
+.ai-link .ai-txt{background:linear-gradient(110deg,var(--a1),var(--a3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.ai-link:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(var(--a3r),.32),inset 0 1px 0 rgba(255,255,255,.12)}
+.ai-link:hover:before{opacity:1}
 .ai-link:after{display:none!important}
 .ai-link .aidot{width:6px;height:6px;border-radius:50%;background:var(--a3);box-shadow:0 0 10px var(--a3);animation:hpulse 1.4s infinite;flex:0 0 auto}
 /* AI activation overlay (charge -> bubble -> blast) */
@@ -405,7 +406,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <li><a href="#industries">Industries</a></li>
       <li><a href="#insights">Insights</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#" class="ai-link" id="ai-link" title="Artificial Intelligence" aria-label="Artificial Intelligence"><span class="aidot"></span>Artificial Intelligence</a></li>
+      <li><a href="#" class="ai-link" id="ai-link" title="Artificial Intelligence" aria-label="Artificial Intelligence"><span class="aidot"></span><span class="ai-txt">Artificial Intelligence</span></a></li>
     </ul>
     <button class="kbtn" id="kbtn" aria-label="Search (open command palette)" title="Search  (⌘K)"><kbd>⌘K</kbd></button>
     <a href="#contact" class="btn btn-primary">Let's talk</a>
