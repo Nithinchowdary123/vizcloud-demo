@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "NetworkTwinIQ",
+  "tagline": "AI-Powered Network Digital Twin for Enterprise Change Validation",
+  "description": "Validate every network change on a safe digital copy of your production environment before it ever goes live. NetworkTwinIQ mirrors your routers, firewalls, load balancers, branch sites, datacenters, and cloud across a vendor-agnostic twin with AI risk scoring.",
+  "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23182d4d'/%3E%3Ccircle cx='100' cy='100' r='55' fill='none' stroke='%2322d3ee' stroke-width='2'/%3E%3Ccircle cx='70' cy='75' r='7' fill='%2322d3ee'/%3E%3Ccircle cx='130' cy='75' r='7' fill='%2322d3ee'/%3E%3Ccircle cx='100' cy='135' r='7' fill='%2322d3ee'/%3E%3Cline x1='100' y1='100' x2='70' y2='75' stroke='%2322d3ee' stroke-width='1.5'/%3E%3Cline x1='100' y1='100' x2='130' y2='75' stroke='%2322d3ee' stroke-width='1.5'/%3E%3Cline x1='100' y1='100' x2='100' y2='135' stroke='%2322d3ee' stroke-width='1.5'/%3E%3C/svg%3E",
+  "capabilities": [
+    "Multi-Vendor Verification: Static reachability and ACL validation across Cisco, Juniper, Palo Alto, F5, Fortinet, and more.",
+    "AI Risk Scoring & Copilot: Every change gets a risk score and a plain-English blast-radius explanation for change-approval boards.",
+    "Hybrid & Multi-Cloud: One unified model spanning branch, datacenter, and AWS / Azure / GCP.",
+    "Governance & Compliance: Continuous drift detection with audit-ready evidence packages for compliance teams."
+  ],
+  "metrics": [
+    { "label": "Devices modeled daily", "value": "15,000+" },
+    { "label": "Avg. annual benefit", "value": "$14.2M" },
+    { "label": "Less unplanned downtime", "value": "33%" },
+    { "label": "Network teams using", "value": "58%" }
+  ],
+  "pricing": [
+    { "tier": "Self-Hosted", "price": "Custom", "features": "Perpetual license, zero data egress" },
+    { "tier": "Hybrid Managed", "price": "From $8K/mo", "features": "Subscription, scales with device count" },
+    { "tier": "Enterprise", "price": "Custom", "features": "Annual contract with dedicated SLA" }
+  ]
+}

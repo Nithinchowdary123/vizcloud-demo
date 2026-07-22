@@ -1241,8 +1241,9 @@ window.__glitch=function(h){if(R||!h)return;h.setAttribute("data-txt",h.textCont
     })();
   }
   function launch(){if(running)return;running=true;ov.classList.remove("out");ov.classList.add("on");ov.setAttribute("aria-hidden","false");sound();
-    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){ov.classList.remove("on");lb.classList.remove("show");running=false;var sec=D.getElementById("ai-projects");if(sec)sec.scrollIntoView();},1400);}
+    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){ov.classList.remove("on");lb.classList.remove("show");running=false;window.location.href="ai-projects.html";},1400);}
     else run();}
+  var afterAnim=setTimeout(function(){if(!R)setTimeout(function(){window.location.href="ai-projects.html";},300);},END+200);
   link.addEventListener("click",function(e){e.preventDefault();var m=D.getElementById("menu"),bg=D.getElementById("burger");if(m)m.classList.remove("open");if(bg)bg.classList.remove("x");launch();});
 })();
 

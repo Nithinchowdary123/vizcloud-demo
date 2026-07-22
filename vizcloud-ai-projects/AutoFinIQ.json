@@ -1,0 +1,24 @@
+{
+  "id": 3,
+  "name": "AutoFinIQ",
+  "tagline": "Automated Financial Intelligence & Reporting Suite",
+  "description": "Viz Cloud's flagship data intelligence platform — unifying ETL pipelines, AI-driven analytics, and Power BI reporting to eliminate manual financial workflows. AutoFinIQ transforms fragmented data across SQL Server, Oracle, AWS S3, Snowflake, and Excel into real-time, governed, predictive intelligence.",
+  "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23182d4d'/%3E%3Crect x='40' y='80' width='12' height='50' fill='%2322d3ee'/%3E%3Crect x='60' y='60' width='12' height='70' fill='%2322d3ee'/%3E%3Crect x='80' y='40' width='12' height='90' fill='%2322d3ee'/%3E%3Crect x='100' y='50' width='12' height='80' fill='%2322d3ee'/%3E%3Crect x='120' y='70' width='12' height='60' fill='%2322d3ee'/%3E%3Crect x='140' y='90' width='12' height='40' fill='%2322d3ee'/%3E%3C/svg%3E",
+  "capabilities": [
+    "Smart ETL Engine: Python + Apache Airflow DAGs extracting from 8+ sources with AI-assisted validation and automated error handling.",
+    "Generative AI Insights: LLM-powered NL-to-SQL queries and automated narrative report generation for non-technical finance stakeholders.",
+    "Predictive Dashboards: Power BI with ML-driven KPI forecasts, anomaly detection, and real-time refresh from Snowflake and AWS Redshift.",
+    "Governance & Compliance: Full data lineage, SOX-compliant audit trails, and role-based access controls."
+  ],
+  "metrics": [
+    { "label": "Reporting efficiency gain", "value": "30%" },
+    { "label": "Less manual effort", "value": "25%" },
+    { "label": "Data sources unified", "value": "8+" },
+    { "label": "Faster insight delivery", "value": "60%" }
+  ],
+  "pricing": [
+    { "tier": "Starter", "price": "Free", "features": "Basic ETL, dashboards, 5 pipelines" },
+    { "tier": "Pro", "price": "$299/mo", "features": "Unlimited pipelines, AI insights, multi-cloud" },
+    { "tier": "Enterprise", "price": "Custom", "features": "On-premises/hybrid, custom AI models, SLA guarantee" }
+  ]
+}

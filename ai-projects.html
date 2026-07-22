@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Projects — Viz Cloud Technologies</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:#05060f;color:#e7ebf5;line-height:1.6}
+    :root{--bg:#05060f;--bg2:#0f1425;--line:rgba(160,170,220,.15);--muted:#a0aadc;--panel:#0a0e1a;--ease:cubic-bezier(.22,1,.36,1)}
+    a{text-decoration:none;color:inherit}
+
+    #nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,6,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+    .logo-link{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;color:#fff}
+    .logo-link:hover{opacity:.8}
+    .nav-back{padding:8px 16px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font-size:14px;transition:.2s}
+    .nav-back:hover{border-color:#a5b4fc;color:#e7ebf5}
+
+    #top{min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:80px}
+    .hero-head{max-width:800px;margin:0 auto}
+    .hero-head h1{font-size:clamp(36px,7vw,72px);font-weight:800;margin-bottom:20px;background:linear-gradient(110deg,#818cf8,#22d3ee);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+    .hero-head p{font-size:18px;color:var(--muted);max-width:600px;margin:0 auto}
+
+    #grid{padding:80px 32px;max-width:1400px;margin:0 auto}
+    .grid-head{text-align:center;margin-bottom:60px}
+    .grid-head h2{font-size:36px;font-weight:800;margin-bottom:12px}
+    .grid-head .sub{color:var(--muted);font-size:16px}
+
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:28px;margin-bottom:60px}
+    .pcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:20px;transition:.3s;position:relative;overflow:hidden}
+    .pcard:hover{border-color:rgba(160,170,220,.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(34,211,238,.1)}
+    .pcard:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0 0,rgba(34,211,238,.05),transparent);pointer-events:none}
+    .pcard-img{width:80px;height:80px;border-radius:12px;background:var(--bg);}
+    .pcard-img img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 8px rgba(34,211,238,.3))}
+    .pcard-head h3{font-size:22px;font-weight:800;margin-bottom:8px}
+    .pcard-tag{display:inline-block;font-size:12px;font-weight:700;color:#22d3ee;background:rgba(34,211,238,.1);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+    .pcard-desc{color:var(--muted);font-size:15px;line-height:1.6}
+    .pcard-metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:20px;border-top:1px solid var(--line)}
+    .metric{text-align:center}
+    .metric-val{font-size:18px;font-weight:800;background:linear-gradient(110deg,#818cf8,#22d3ee);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;display:block;margin-bottom:4px}
+    .metric-lab{font-size:12px;color:var(--muted)}
+    .pcard-caps{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+    .pcard-caps h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+    .pcard-caps ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+    .pcard-caps li{font-size:12px;padding:6px 12px;background:rgba(160,170,220,.08);border-radius:6px;color:var(--muted)}
+    .pcard-cta{margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+    .cta-btn{display:inline-block;padding:10px 18px;background:linear-gradient(110deg,#818cf8,#22d3ee);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:.2s;border:0;cursor:pointer}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(34,211,238,.3)}
+
+    @media(max-width:768px){
+      #nav{padding:12px 20px}
+      .projects{grid-template-columns:1fr}
+      .pcard-metrics{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="logo-link">
+    <span style="width:32px;height:32px;background:linear-gradient(135deg,#818cf8,#22d3ee);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff">V</span>
+    Viz Cloud
+  </a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<section id="top">
+  <div class="hero-head">
+    <h1>AI Projects</h1>
+    <p>Explore our cutting-edge AI-powered platforms built for enterprise scale.</p>
+  </div>
+</section>
+
+<section id="grid">
+  <div class="grid-head">
+    <h2>Our AI Products</h2>
+    <p class="sub">Intelligent solutions for networks, operations, and finance</p>
+  </div>
+  <div class="projects" id="projectsContainer">
+    <div style="text-align:center;padding:40px;color:var(--muted)">Loading projects...</div>
+  </div>
+</section>
+
+<script>
+var D=document;
+async function loadProjects(){
+  try{
+    var container=D.getElementById('projectsContainer');
+    var files=['NetworkTwinIQ.json','NetIntelAI.json','AutoFinIQ.json'];
+    var projects=[];
+    for(var f of files){
+      var res=await fetch('vizcloud-ai-projects/'+f);
+      if(res.ok){projects.push(await res.json());}
+    }
+    projects.sort(function(a,b){return a.id-b.id});
+    container.innerHTML=projects.map(function(p){
+      var metricsHtml=p.metrics.map(function(m){return '<div class="metric"><span class="metric-val">'+m.value+'</span><span class="metric-lab">'+m.label+'</span></div>'}).join('');
+      var capsHtml=p.capabilities.slice(0,2).map(function(c){var t=c.split(':')[0];return '<li>'+t+'</li>'}).join('');
+      return '<div class="pcard">'+
+        '<div><div class="pcard-img"><img src="'+p.image+'" alt="'+p.name+'" /></div>'+
+        '<div class="pcard-tag">AI Platform</div>'+
+        '<div class="pcard-head"><h3>'+p.name+'</h3><p style="color:var(--muted);font-size:14px">'+p.tagline+'</p></div>'+
+        '<p class="pcard-desc">'+p.description+'</p></div>'+
+        '<div class="pcard-metrics">'+metricsHtml+'</div>'+
+        '<div class="pcard-caps"><h4>Key Capabilities</h4><ul>'+capsHtml+'</ul></div>'+
+        '<div class="pcard-cta"><button class="cta-btn" onclick="alert(\'View details for '+p.name+' — Coming soon!\')">View Details</button></div>'+
+        '</div>';
+    }).join('');
+  }catch(e){
+    D.getElementById('projectsContainer').innerHTML='<div style="color:#ff6b6b;padding:40px">Error loading projects. Please try again.</div>';
+    console.error(e);
+  }
+}
+loadProjects();
+</script>
+
+</body>
+</html>
