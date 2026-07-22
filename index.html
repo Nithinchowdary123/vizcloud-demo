@@ -106,6 +106,15 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 .scroll-cue i{width:4px;height:8px;border-radius:2px;background:#fff;animation:cue 1.6s infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(-4px)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 
+.orbs{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;animation:orbsFade .8s ease 2.2s forwards}
+.orb{position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;opacity:.6}
+.orb.o1{width:200px;height:200px;top:15%;left:8%;background:radial-gradient(circle at 35% 35%, rgba(var(--a1r),.9), rgba(var(--a1r),.2));animation:orbFloat 16s ease-in-out infinite}
+.orb.o2{width:280px;height:280px;top:10%;right:5%;background:radial-gradient(circle at 40% 40%, rgba(var(--a3r),.8), rgba(var(--a3r),.15));animation:orbFloat 18s ease-in-out infinite 2s reverse}
+.orb.o3{width:150px;height:150px;bottom:20%;left:15%;background:radial-gradient(circle at 35% 35%, rgba(var(--a2r),.7), rgba(var(--a2r),.1));animation:orbFloat 20s ease-in-out infinite 4s}
+.orb.o4{width:240px;height:240px;bottom:10%;right:10%;background:radial-gradient(circle at 30% 30%, rgba(var(--a3r),.75), rgba(var(--a3r),.12));animation:orbFloat 22s ease-in-out infinite 1.5s reverse}
+@keyframes orbsFade{from{opacity:0}to{opacity:1}}
+@keyframes orbFloat{0%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-50px) scale(1.08)}50%{transform:translate(-30px,40px) scale(.95)}75%{transform:translate(50px,30px) scale(1.04)}100%{transform:translate(0,0) scale(1)}}
+
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:20px 0;background:var(--bg2);cursor:grab;user-select:none;touch-action:pan-y}
 .marquee .t{display:inline-block}
 .marquee span{display:inline-block;padding:0 30px;font-size:22px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(160,170,220,.5)}
@@ -469,6 +478,12 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <canvas id="mesh"></canvas>
   <canvas id="hero-gl" aria-hidden="true"></canvas>
   <div class="pl" id="pl"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <div class="orbs" id="orbs" aria-hidden="true">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="orb o4"></div>
+  </div>
   <div class="wrap reveal-h">
     <span class="eyebrow">Viz Cloud Technologies</span>
     <h1>Ready for the <span class="rot grad" id="rot">future</span>.</h1>
@@ -997,7 +1012,7 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
   draw();
 })();
 
-/* Feature: WebGL aurora shader behind hero (theme-reactive, cursor-reactive) */
+/* Feature: WebGL aurora shader behind hero (vibrant, theme-reactive, cursor-reactive) */
 (function(){
   var cv=D.getElementById("hero-gl");if(!cv)return;
   var gl=null;try{gl=cv.getContext("webgl",{antialias:true,alpha:true,premultipliedAlpha:false})||cv.getContext("experimental-webgl",{alpha:true});}catch(e){}
@@ -1006,13 +1021,15 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
   var fs="precision mediump float;uniform float t;uniform vec2 r;uniform vec2 m;uniform vec3 c1,c2,c3;"
    +"float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}"
    +"float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}"
-   +"float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=.5;}return v;}"
-   +"void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv;p.x*=r.x/r.y;float tt=t*.05;vec2 mm=(m-.5);"
-   +"vec2 q=vec2(fbm(p*2.2+tt),fbm(p*2.2+vec2(3.1)-tt));"
-   +"vec2 s=vec2(fbm(p*2.2+q*1.6+mm*.7+tt),fbm(p*2.2+q*1.6-mm*.7+vec2(1.7)));"
-   +"float f=fbm(p*2.2+s*2.2);vec3 col=mix(c1,c2,clamp(f*1.7,0.,1.));col=mix(col,c3,clamp(length(s)*.85,0.,1.));"
-   +"float glow=smoothstep(.1,1.,f);col*=.4+1.0*glow;float vig=smoothstep(1.15,.25,length(uv-.5));"
-   +"float alpha=(.30+.55*glow)*vig;gl_FragColor=vec4(col,alpha);}";
+   +"float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<6;i++){v+=a*noise(p);p*=2.08;a*=.5;}return v;}"
+   +"void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv;p.x*=r.x/r.y;float tt=t*.14;vec2 mm=(m-.5)*1.2;"
+   +"vec2 q=vec2(fbm(p*2.8+tt*1.2),fbm(p*2.8+vec2(4.1)-tt*0.8));"
+   +"vec2 s=vec2(fbm(p*2.2+q*2.4+mm*1.2+tt*1.5),fbm(p*2.2+q*2.4-mm*0.9+vec2(2.3)*tt));"
+   +"float f=fbm(p*2.4+s*2.8+tt*0.6);float f2=fbm(p*4.2-q*1.2+tt*0.4);"
+   +"vec3 col=mix(c1,c2,clamp(f*2.1,0.,1.));col=mix(col,c3,clamp(length(s)*1.2,0.,1.));"
+   +"col+=c2*pow(f2,2.2)*0.8;col*=pow(1.3,0.8);"
+   +"float glow=pow(smoothstep(.05,1.2,f),1.5)+smoothstep(.1,0.8,length(s))*1.2;col*=0.6+1.6*glow;float vig=smoothstep(1.35,.15,length(uv-.5));"
+   +"float alpha=(.45+.75*glow)*vig;gl_FragColor=vec4(col,alpha);}";
   function sh(ty,src){var s=gl.createShader(ty);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))return null;return s;}
   var v=sh(gl.VERTEX_SHADER,vs),fsh=sh(gl.FRAGMENT_SHADER,fs);if(!v||!fsh)return;
   var prog=gl.createProgram();gl.attachShader(prog,v);gl.attachShader(prog,fsh);gl.linkProgram(prog);
