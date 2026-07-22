@@ -107,11 +107,11 @@ header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filt
 @keyframes cue{0%{opacity:0;transform:translateY(-4px)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
 
 .orbs{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;animation:orbsFade .8s ease 2.2s forwards}
-.orb{position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;opacity:.6}
-.orb.o1{width:200px;height:200px;top:15%;left:8%;background:radial-gradient(circle at 35% 35%, rgba(var(--a1r),.9), rgba(var(--a1r),.2));animation:orbFloat 16s ease-in-out infinite}
-.orb.o2{width:280px;height:280px;top:10%;right:5%;background:radial-gradient(circle at 40% 40%, rgba(var(--a3r),.8), rgba(var(--a3r),.15));animation:orbFloat 18s ease-in-out infinite 2s reverse}
-.orb.o3{width:150px;height:150px;bottom:20%;left:15%;background:radial-gradient(circle at 35% 35%, rgba(var(--a2r),.7), rgba(var(--a2r),.1));animation:orbFloat 20s ease-in-out infinite 4s}
-.orb.o4{width:240px;height:240px;bottom:10%;right:10%;background:radial-gradient(circle at 30% 30%, rgba(var(--a3r),.75), rgba(var(--a3r),.12));animation:orbFloat 22s ease-in-out infinite 1.5s reverse}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);mix-blend-mode:screen;opacity:.28}
+.orb.o1{width:200px;height:200px;top:-60px;left:-80px;background:radial-gradient(circle at 35% 35%, rgba(var(--a1r),.7), rgba(var(--a1r),.1));animation:orbFloat 16s ease-in-out infinite}
+.orb.o2{width:280px;height:280px;top:-100px;right:-120px;background:radial-gradient(circle at 40% 40%, rgba(var(--a3r),.6), rgba(var(--a3r),.08));animation:orbFloat 18s ease-in-out infinite 2s reverse}
+.orb.o3{width:150px;height:150px;bottom:-70px;left:-60px;background:radial-gradient(circle at 35% 35%, rgba(var(--a2r),.5), rgba(var(--a2r),.05));animation:orbFloat 20s ease-in-out infinite 4s}
+.orb.o4{width:240px;height:240px;bottom:-80px;right:-90px;background:radial-gradient(circle at 30% 30%, rgba(var(--a3r),.55), rgba(var(--a3r),.07));animation:orbFloat 22s ease-in-out infinite 1.5s reverse}
 @keyframes orbsFade{from{opacity:0}to{opacity:1}}
 @keyframes orbFloat{0%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-50px) scale(1.08)}50%{transform:translate(-30px,40px) scale(.95)}75%{transform:translate(50px,30px) scale(1.04)}100%{transform:translate(0,0) scale(1)}}
 
@@ -393,6 +393,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* ---- Feature: WebGL aurora shader (hero) ---- */
 #hero-gl{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.1s ease}
 #hero-gl.on{opacity:1}
+.text-scrim{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:900px;height:600px;max-width:95vw;background:radial-gradient(ellipse 500px 350px, rgba(5,6,15,.45), rgba(5,6,15,.75) 60%, rgba(5,6,15,.9));border-radius:50%;z-index:1;pointer-events:none}
 .hero .pl{z-index:1}
 
 /* ---- Feature: scroll-driven pinned scrollytelling ---- */
@@ -484,6 +485,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
     <div class="orb o3"></div>
     <div class="orb o4"></div>
   </div>
+  <div class="text-scrim" aria-hidden="true"></div>
   <div class="wrap reveal-h">
     <span class="eyebrow">Viz Cloud Technologies</span>
     <h1>Ready for the <span class="rot grad" id="rot">future</span>.</h1>
