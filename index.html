@@ -336,11 +336,10 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* Confetti */
 #confetti{position:fixed;inset:0;z-index:995;pointer-events:none}
 /* AI nav link (glowing) */
-.ai-link{position:relative;z-index:0;display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:999px;font-weight:800!important;font-size:13px;letter-spacing:.035em;white-space:nowrap;background:linear-gradient(180deg,rgba(var(--a3r),.10),rgba(var(--a1r),.05));box-shadow:0 4px 20px rgba(var(--a3r),.14),inset 0 1px 0 rgba(255,255,255,.07);transition:transform .2s,box-shadow .22s}
-.ai-link:before{content:"";position:absolute;inset:0;border-radius:999px;padding:1.4px;background:linear-gradient(110deg,var(--a1),var(--a3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.7;transition:.22s;pointer-events:none}
-.ai-link .ai-txt{background:linear-gradient(110deg,var(--a1),var(--a3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.ai-link:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(var(--a3r),.32),inset 0 1px 0 rgba(255,255,255,.12)}
-.ai-link:hover:before{opacity:1}
+.ai-link{position:relative;z-index:0;display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:999px;font-weight:800!important;font-size:13px;letter-spacing:.035em;white-space:nowrap;background:linear-gradient(110deg,rgba(var(--a1r),.25),rgba(var(--a3r),.2));border:1px solid rgba(var(--a3r),.6);box-shadow:0 4px 16px rgba(var(--a3r),.2),inset 0 1px 0 rgba(255,255,255,.1);transition:all .2s;color:#fff}
+.ai-link:before{display:none}
+.ai-link .ai-txt{color:#fff;background:none;-webkit-background-clip:unset;background-clip:unset;-webkit-text-fill-color:unset}
+.ai-link:hover{transform:translateY(-2px);background:linear-gradient(110deg,rgba(var(--a1r),.35),rgba(var(--a3r),.3));border-color:rgba(var(--a3r),.9);box-shadow:0 8px 24px rgba(var(--a3r),.35)}
 .ai-link:after{display:none!important}
 .ai-link .aidot{width:6px;height:6px;border-radius:50%;background:var(--a3);box-shadow:0 0 10px var(--a3);animation:hpulse 1.4s infinite;flex:0 0 auto}
 /* AI activation overlay (charge -> bubble -> blast) */
@@ -444,7 +443,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top-anchor" class="logo"><span class="mark">V</span>Viz Cloud <span class="grad">Technologies</span></a>
+    <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 40 50" width="32" height="40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vgr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0052CC;stop-opacity:1" /><stop offset="100%" style="stop-color:#1E88E5;stop-opacity:1" /></linearGradient></defs><path d="M 5 5 L 20 45 L 35 5" stroke="url(#vgr)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
     <ul class="menu" id="menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -621,12 +620,12 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 
 <section class="cta-band" id="contact">
   <div class="wrap reveal">
-    <h2>Waste no more <span class="grad">time</span>.</h2>
-    <p>Share your requirements — give us a week and we'll set the benchmark.</p>
-    <form class="cform" id="cform" novalidate>
+    <h2>Ready to transform your <span class="grad">enterprise</span>?</h2>
+    <p>Share your vision with us — let's build something great together.</p>
+    <form class="cform" id="cform" action="https://formspree.io/f/mzyzpeoj" method="POST" novalidate>
       <input required name="name" placeholder="Your name" aria-label="Your name">
       <input required type="email" name="email" placeholder="Work email" aria-label="Work email">
-      <input name="msg" placeholder="How can we help?" aria-label="How can we help?">
+      <input name="message" placeholder="How can we help?" aria-label="How can we help?">
       <button type="submit" class="btn btn-primary">Start a conversation →</button>
     </form>
     <div class="cform-ok" id="cok" hidden>✓ Thanks! Your details are with the VizCloud team — we’ll be in touch shortly.</div>
@@ -637,7 +636,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <a href="#top-anchor" class="logo"><span class="mark">V</span>Viz Cloud <span class="grad">Technologies</span></a>
+        <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 40 50" width="32" height="40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vgr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0052CC;stop-opacity:1" /><stop offset="100%" style="stop-color:#1E88E5;stop-opacity:1" /></linearGradient></defs><path d="M 5 5 L 20 45 L 35 5" stroke="url(#vgr)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
         <p class="about">A strategic technology &amp; staffing partner helping ambitious companies transform, scale, and lead.</p>
       </div>
       <div class="fcol"><h4>Company</h4><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
@@ -755,7 +754,7 @@ function burstConfetti(){var c=D.getElementById("confetti");if(!c||R)return;var 
 addEventListener("load",function(){setTimeout(function(){D.getElementById("pre").classList.add("done");},1400);});
 
 /* Contact form (front-end; wire to a backend to deliver) */
-(function(){var cf=D.getElementById("cform");if(!cf)return;cf.addEventListener("submit",function(e){e.preventDefault();var n=cf.name,em=cf.email;if(!n.value.trim()||!em.value.trim()||!/.+@.+\..+/.test(em.value)){(!n.value.trim()?n:em).focus();return;}cf.style.display="none";var ok=D.getElementById("cok");if(ok)ok.hidden=false;burstConfetti();});})();
+(function(){var cf=D.getElementById("cform");if(!cf)return;cf.addEventListener("submit",function(e){var n=cf.name,em=cf.email;if(!n.value.trim()||!em.value.trim()||!/.+@.+\..+/.test(em.value)){e.preventDefault();(!n.value.trim()?n:em).focus();return;}setTimeout(function(){cf.style.display="none";var ok=D.getElementById("cok");if(ok)ok.hidden=false;burstConfetti();},300);});})();
 
 /* Scrollspy: highlight the nav link of the section in view */
 (function(){
@@ -1006,8 +1005,8 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
   var ctx=cv.getContext("2d"),w,h,t=0,hero=cv.parentNode;
   function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;}
   size();addEventListener("resize",size);
-  var grid=60,opacity=0.08;
-  (function frame(){t+=.3;ctx.fillStyle='#05060f';ctx.fillRect(0,0,w,h);
+  var grid=60,opacity=0.15;
+  (function frame(){t+=.3;ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,w,h);
     ctx.strokeStyle=`rgba(var(--a3r),${opacity})`;ctx.lineWidth=1;
     for(var x=0;x<=w;x+=grid){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
     for(var y=0;y<=h;y+=grid){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
