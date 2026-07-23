@@ -292,7 +292,9 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 .head .eyebrow{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.18em}
 .head .eyebrow:before{content:"[ ";opacity:.6}.head .eyebrow:after{content:" ]";opacity:.6}
 /* Nav ⌘K hint */
-.kbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:#c3cadb;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit}
+.kbtn{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:#c3cadb;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.kbtn .kbtn-txt{opacity:.85}
+.kbtn kbd{font-family:inherit;font-size:11px;font-weight:700;opacity:.7;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
 .kbtn:hover{border-color:var(--acc);color:#fff}
 .kbtn kbd{font-family:ui-monospace,monospace;font-size:11px}
 @media(max-width:1240px){.kbtn{display:none}}
@@ -454,7 +456,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <li><a href="#contact">Contact</a></li>
       <li><a href="#" class="ai-link" id="ai-link" title="Artificial Intelligence" aria-label="Artificial Intelligence"><span class="aidot"></span><span class="ai-txt">Artificial Intelligence</span></a></li>
     </ul>
-    <button class="kbtn" id="kbtn" aria-label="Search (open command palette)" title="Search  (⌘K)"><kbd>⌘K</kbd></button>
+    <button class="kbtn" id="kbtn" aria-label="Search (open command palette)" title="Search  (⌘K)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span class="kbtn-txt">Search</span><kbd>⌘K</kbd></button>
     <a href="#contact" class="btn btn-primary">Let's talk</a>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
