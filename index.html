@@ -71,7 +71,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:600;transition:padding .3s va
 header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;white-space:nowrap;flex:0 0 auto}
-.logo .mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from var(--ang,210deg),#6366f1,#a855f7,#22d3ee,#6366f1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(99,102,241,.5);animation:spin 6s linear infinite}
+.logo .mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 @keyframes spin{to{--ang:570deg}}
 .menu{display:flex;align-items:center;gap:20px;list-style:none;flex-wrap:nowrap}
 .menu a{font-size:14px;font-weight:600;color:#c3cadb;position:relative;padding:6px 0;transition:color .2s;white-space:nowrap}
@@ -336,12 +336,13 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* Confetti */
 #confetti{position:fixed;inset:0;z-index:995;pointer-events:none}
 /* AI nav link (glowing) */
-.ai-link{position:relative;z-index:0;display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:999px;font-weight:800!important;font-size:13px;letter-spacing:.035em;white-space:nowrap;background:linear-gradient(110deg,rgba(var(--a1r),.25),rgba(var(--a3r),.2));border:1px solid rgba(var(--a3r),.6);box-shadow:0 4px 16px rgba(var(--a3r),.2),inset 0 1px 0 rgba(255,255,255,.1);transition:all .2s;color:#fff}
+.ai-link{position:relative;display:inline-flex;align-items:center;gap:6px;padding:6px 0;font-size:14px;font-weight:600;color:#c3cadb;white-space:nowrap;background:none;border:none;box-shadow:none;transition:color .2s}
 .ai-link:before{display:none}
-.ai-link .ai-txt{color:#fff;background:none;-webkit-background-clip:unset;background-clip:unset;-webkit-text-fill-color:unset}
-.ai-link:hover{transform:translateY(-2px);background:linear-gradient(110deg,rgba(var(--a1r),.35),rgba(var(--a3r),.3));border-color:rgba(var(--a3r),.9);box-shadow:0 8px 24px rgba(var(--a3r),.35)}
-.ai-link:after{display:none!important}
-.ai-link .aidot{width:6px;height:6px;border-radius:50%;background:var(--a3);box-shadow:0 0 10px var(--a3);animation:hpulse 1.4s infinite;flex:0 0 auto}
+.ai-link .ai-txt{color:inherit;background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor}
+.ai-link:hover{color:#fff;transform:none;box-shadow:none;background:none}
+.ai-link:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
+.ai-link:hover:after{transform:scaleX(1)}
+.ai-link .aidot{display:none}
 /* AI activation overlay (charge -> bubble -> blast) */
 #ai-load{position:fixed;inset:0;z-index:1001;display:none;align-items:center;justify-content:center;background:radial-gradient(900px 680px at 50% 48%,#0a1330,#04050c 76%)}
 #ai-load.on{display:flex;animation:aifade .35s ease}
@@ -385,7 +386,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 /* ---- Feature: WebGL aurora shader (hero) ---- */
 #hero-gl{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.1s ease}
 #hero-gl.on{opacity:1}
-.text-scrim{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:900px;height:600px;max-width:95vw;background:radial-gradient(ellipse 500px 350px, rgba(5,6,15,.45), rgba(5,6,15,.75) 60%, rgba(5,6,15,.9));border-radius:50%;z-index:1;pointer-events:none}
+.text-scrim{display:none}
 .hero .pl{z-index:1}
 
 /* ---- Feature: scroll-driven pinned scrollytelling ---- */
@@ -443,7 +444,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 40 50" width="32" height="40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vgr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0052CC;stop-opacity:1" /><stop offset="100%" style="stop-color:#1E88E5;stop-opacity:1" /></linearGradient></defs><path d="M 5 5 L 20 45 L 35 5" stroke="url(#vgr)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
+    <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 48 50" width="38" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 L24 46 L44 6"/><path d="M12 6 L24 34 L36 6"/><path d="M20 6 L24 22 L28 6"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
     <ul class="menu" id="menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -622,7 +623,8 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <div class="wrap reveal">
     <h2>Ready to transform your <span class="grad">enterprise</span>?</h2>
     <p>Share your vision with us — let's build something great together.</p>
-    <form class="cform" id="cform" action="https://formspree.io/f/mzyzpeoj" method="POST" novalidate>
+    <form class="cform" id="cform" action="https://formspree.io/f/mwvgrkqv" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="New enquiry from Viz Cloud Technologies website">
       <input required name="name" placeholder="Your name" aria-label="Your name">
       <input required type="email" name="email" placeholder="Work email" aria-label="Work email">
       <input name="message" placeholder="How can we help?" aria-label="How can we help?">
@@ -636,7 +638,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 40 50" width="32" height="40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vgr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0052CC;stop-opacity:1" /><stop offset="100%" style="stop-color:#1E88E5;stop-opacity:1" /></linearGradient></defs><path d="M 5 5 L 20 45 L 35 5" stroke="url(#vgr)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
+        <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 48 50" width="38" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 L24 46 L44 6"/><path d="M12 6 L24 34 L36 6"/><path d="M20 6 L24 22 L28 6"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
         <p class="about">A strategic technology &amp; staffing partner helping ambitious companies transform, scale, and lead.</p>
       </div>
       <div class="fcol"><h4>Company</h4><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
@@ -754,7 +756,14 @@ function burstConfetti(){var c=D.getElementById("confetti");if(!c||R)return;var 
 addEventListener("load",function(){setTimeout(function(){D.getElementById("pre").classList.add("done");},1400);});
 
 /* Contact form (front-end; wire to a backend to deliver) */
-(function(){var cf=D.getElementById("cform");if(!cf)return;cf.addEventListener("submit",function(e){var n=cf.name,em=cf.email;if(!n.value.trim()||!em.value.trim()||!/.+@.+\..+/.test(em.value)){e.preventDefault();(!n.value.trim()?n:em).focus();return;}setTimeout(function(){cf.style.display="none";var ok=D.getElementById("cok");if(ok)ok.hidden=false;burstConfetti();},300);});})();
+(function(){var cf=D.getElementById("cform");if(!cf)return;
+  function done(){cf.style.display="none";var ok=D.getElementById("cok");if(ok)ok.hidden=false;burstConfetti();}
+  cf.addEventListener("submit",function(e){e.preventDefault();var n=cf.name,em=cf.email;if(!n.value.trim()||!em.value.trim()||!/.+@.+\..+/.test(em.value)){(!n.value.trim()?n:em).focus();return;}
+    var btn=cf.querySelector("button[type=submit]");if(btn){btn.disabled=true;btn.textContent="Sending…";}
+    fetch(cf.action,{method:"POST",body:new FormData(cf),headers:{Accept:"application/json"}})
+      .then(function(r){done();})
+      .catch(function(){done();});
+  });})();
 
 /* Scrollspy: highlight the nav link of the section in view */
 (function(){
@@ -1000,21 +1009,32 @@ function scramble(el){if(!el)return;var fin=el.getAttribute("data-t")||el.textCo
 })();
 
 /* Clean animated grid background */
+/* Floating animated blobs background (simple, premium, light) */
 (function(){if(R)return;
   var cv=D.getElementById("grid-bg");if(!cv)return;
   var ctx=cv.getContext("2d"),w,h,t=0,hero=cv.parentNode;
   function size(){w=cv.width=hero.offsetWidth;h=cv.height=hero.offsetHeight;}
   size();addEventListener("resize",size);
-  var grid=60,opacity=0.15;
-  (function frame(){t+=.3;ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,w,h);
-    ctx.strokeStyle=`rgba(var(--a3r),${opacity})`;ctx.lineWidth=1;
-    for(var x=0;x<=w;x+=grid){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-    for(var y=0;y<=h;y+=grid){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
-    var glow=Math.sin(t*0.035)*0.018+0.022;
-    ctx.shadowColor=`rgba(var(--a3r),${glow})`;ctx.shadowBlur=12;ctx.strokeStyle=`rgba(var(--a1r),${glow*1.8})`;ctx.lineWidth=2;
-    var offset=(t*2)%grid;
-    for(var x=offset;x<=w;x+=grid*3){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-    for(var y=offset;y<=h;y+=grid*3){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  var blobs=[
+    {bx:.22,by:.30,r:.46,col:[129,140,248],sx:.06,sy:.07,ph:0},
+    {bx:.80,by:.34,r:.50,col:[168,140,255],sx:.055,sy:.05,ph:2.1},
+    {bx:.52,by:.82,r:.44,col:[56,189,248],sx:.065,sy:.05,ph:4.2},
+    {bx:.66,by:.14,r:.34,col:[192,132,252],sx:.05,sy:.06,ph:1.3}
+  ];
+  (function frame(){t+=.0045;
+    ctx.fillStyle='#05060f';ctx.fillRect(0,0,w,h);
+    ctx.globalCompositeOperation='lighter';
+    for(var i=0;i<blobs.length;i++){var b=blobs[i];
+      var cx=(b.bx+Math.sin(t+b.ph)*b.sx)*w;
+      var cy=(b.by+Math.cos(t*.85+b.ph)*b.sy)*h;
+      var rad=b.r*Math.max(w,h);
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
+      g.addColorStop(0,'rgba('+b.col[0]+','+b.col[1]+','+b.col[2]+',0.16)');
+      g.addColorStop(.5,'rgba('+b.col[0]+','+b.col[1]+','+b.col[2]+',0.05)');
+      g.addColorStop(1,'rgba('+b.col[0]+','+b.col[1]+','+b.col[2]+',0)');
+      ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    }
+    ctx.globalCompositeOperation='source-over';
     requestAnimationFrame(frame);
   })();
 })();
@@ -1234,17 +1254,12 @@ window.__glitch=function(h){if(R||!h)return;h.setAttribute("data-txt",h.textCont
         ctx.globalAlpha=1;
       }
       if(el<END)raf=requestAnimationFrame(fr);
-      else{ov.classList.add("out");
-        setTimeout(function(){ov.classList.remove("on","out");ov.setAttribute("aria-hidden","true");label.classList.remove("show");running=false;},520);}
+      else{ /* keep overlay fully covering the screen and navigate — no home-page flash */
+        window.location.href="ai-projects.html";}
     })();
   }
   function launch(){if(running)return;running=true;ov.classList.remove("out");ov.classList.add("on");ov.setAttribute("aria-hidden","false");sound();
-    var delayMs=R?1400:END+520;
-    setTimeout(function(){
-      D.body.style.opacity="0";D.body.style.transition="opacity .4s ease-out";
-      setTimeout(function(){window.location.href="ai-projects.html";},400);
-    },delayMs);
-    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){ov.classList.remove("on");lb.classList.remove("show");running=false;},1400);}
+    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){window.location.href="ai-projects.html";},1400);}
     else run();}
   link.addEventListener("click",function(e){e.preventDefault();var m=D.getElementById("menu"),bg=D.getElementById("burger");if(m)m.classList.remove("open");if(bg)bg.classList.remove("x");launch();});
 })();
