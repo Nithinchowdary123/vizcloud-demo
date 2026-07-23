@@ -1236,12 +1236,20 @@ window.__glitch=function(h){if(R||!h)return;h.setAttribute("data-txt",h.textCont
       }
       if(el<END)raf=requestAnimationFrame(fr);
       else{ov.classList.add("out");
-        setTimeout(function(){ov.classList.remove("on","out");ov.setAttribute("aria-hidden","true");label.classList.remove("show");running=false;
-          window.location.href="ai-projects.html";},520);}
+        setTimeout(function(){ov.classList.remove("on","out");ov.setAttribute("aria-hidden","true");label.classList.remove("show");running=false;},520);}
     })();
   }
   function launch(){if(running)return;running=true;ov.classList.remove("out");ov.classList.add("on");ov.setAttribute("aria-hidden","false");sound();
-    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){ov.classList.remove("on");lb.classList.remove("show");running=false;window.location.href="ai-projects.html";},1400);}
+    fetch("ai-projects.html").then(function(r){return r.text();}).then(function(html){
+      var parser=new DOMParser(),doc=parser.parseFromString(html,"text/html");
+      setTimeout(function(){
+        D.body.innerHTML=doc.body.innerHTML;
+        D.head.innerHTML=doc.head.innerHTML;
+        window.history.pushState({page:"ai-projects"},"AI Projects","ai-projects.html");
+        window.scrollTo(0,0);
+      },R?1400:END+520);
+    }).catch(function(e){console.error(e);window.location.href="ai-projects.html";});
+    if(R){var lb=ov.querySelector(".ai-label");lb.classList.add("show");setTimeout(function(){ov.classList.remove("on");lb.classList.remove("show");running=false;},1400);}
     else run();}
   link.addEventListener("click",function(e){e.preventDefault();var m=D.getElementById("menu"),bg=D.getElementById("burger");if(m)m.classList.remove("open");if(bg)bg.classList.remove("x");launch();});
 })();
