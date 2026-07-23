@@ -39,9 +39,10 @@ h1,h2,h3{color:var(--ink);line-height:1.08;letter-spacing:-.02em;font-weight:800
 #pre{position:fixed;inset:0;z-index:1000;background:radial-gradient(900px 600px at 50% 42%,#101736,#05060f 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;clip-path:circle(141% at 50% 50%)}
 #pre.done{animation:preout .75s var(--ease) forwards}
 @keyframes preout{to{clip-path:circle(0% at 50% 50%);visibility:hidden}}
-.pmark{position:relative;width:88px;height:88px;border-radius:24px;background:conic-gradient(from 210deg,#6366f1,#a855f7,#ec4899,#22d3ee,#6366f1);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px rgba(99,102,241,.6);animation:pmpop .9s var(--ease) both}
+.pmark{position:relative;width:100px;height:100px;display:flex;align-items:center;justify-content:center;animation:pmpop .9s var(--ease) both}
 .pmark span{font-size:42px;font-weight:800;color:#fff}
-.pmark i{position:absolute;inset:0;border-radius:24px;border:2px solid rgba(129,140,248,.55);animation:pring 1.5s ease-out infinite}
+.pmark img{width:92px;height:92px;object-fit:contain;filter:drop-shadow(0 0 26px rgba(30,136,229,.55))}
+.pmark i{position:absolute;inset:2px;border-radius:50%;border:2px solid rgba(30,136,229,.5);animation:pring 1.5s ease-out infinite}
 .pmark i:nth-child(3){animation-delay:.38s}.pmark i:nth-child(4){animation-delay:.76s}
 @keyframes pring{0%{transform:scale(1);opacity:.85}100%{transform:scale(2.15);opacity:0}}
 @keyframes pmpop{0%{transform:scale(.4) rotate(-14deg);opacity:0}60%{transform:scale(1.08) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
@@ -71,7 +72,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:600;transition:padding .3s va
 header.scrolled{padding:12px 0;background:rgba(6,7,13,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;white-space:nowrap;flex:0 0 auto}
-.logo .mark{width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.logo .mark{width:38px;height:38px;object-fit:contain;display:block;flex:0 0 auto}
 @keyframes spin{to{--ang:570deg}}
 .menu{display:flex;align-items:center;gap:20px;list-style:none;flex-wrap:nowrap}
 .menu a{font-size:14px;font-weight:600;color:#c3cadb;position:relative;padding:6px 0;transition:color .2s;white-space:nowrap}
@@ -441,12 +442,12 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <svg viewBox="0 0 24 24" id="snd-ico"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16 8a5 5 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
 </button>
 
-<div id="pre"><div class="pmark"><span>V</span><i></i><i></i><i></i></div><div class="mk grad">VIZ CLOUD TECHNOLOGIES</div><div class="psub">Ready for the future</div></div>
+<div id="pre"><div class="pmark"><img src="logo.png" alt="Viz Cloud"><i></i><i></i><i></i></div><div class="mk grad">VIZ CLOUD TECHNOLOGIES</div><div class="psub">Ready for the future</div></div>
 <div class="cur"></div><div class="cur-d"></div><div id="spot"></div>
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 48 50" width="38" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 L24 46 L44 6"/><path d="M12 6 L24 34 L36 6"/><path d="M20 6 L24 22 L28 6"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
+    <a href="#top-anchor" class="logo"><img class="mark" src="logo.png" alt="Viz Cloud Technologies" width="38" height="38">Viz Cloud <span class="grad">Technologies</span></a>
     <ul class="menu" id="menu">
       <li><a href="#services">Services</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -640,7 +641,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <a href="#top-anchor" class="logo"><svg class="mark" viewBox="0 0 48 50" width="38" height="38" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 L24 46 L44 6"/><path d="M12 6 L24 34 L36 6"/><path d="M20 6 L24 22 L28 6"/></svg>Viz Cloud <span class="grad">Technologies</span></a>
+        <a href="#top-anchor" class="logo"><img class="mark" src="logo.png" alt="Viz Cloud Technologies" width="38" height="38">Viz Cloud <span class="grad">Technologies</span></a>
         <p class="about">A strategic technology &amp; staffing partner helping ambitious companies transform, scale, and lead.</p>
       </div>
       <div class="fcol"><h4>Company</h4><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
