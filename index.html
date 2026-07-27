@@ -889,8 +889,13 @@ top.onclick=function(){scrollTo({top:0,behavior:R?"auto":"smooth"});};
 
 /* Mobile menu */
 var burger=D.getElementById("burger"),menu=D.getElementById("menu");
+function closeMenu(){menu.classList.remove("open");burger.classList.remove("x");}
 burger.onclick=function(){menu.classList.toggle("open");burger.classList.toggle("x");};
-menu.addEventListener("click",function(e){if(e.target.tagName==="A"){menu.classList.remove("open");burger.classList.remove("x");}});
+menu.addEventListener("click",function(e){if(e.target.tagName==="A"){closeMenu();}});
+/* Tap anywhere outside the open drawer (rest of the page) to close it */
+D.addEventListener("click",function(e){if(menu.classList.contains("open")&&!menu.contains(e.target)&&!burger.contains(e.target)){closeMenu();}});
+/* Also close on Escape */
+addEventListener("keydown",function(e){if(e.key==="Escape"&&menu.classList.contains("open")){closeMenu();}});
 
 /* Reveal */
 if("IntersectionObserver" in window && !R){
