@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us — Viz Cloud Technologies</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    :root{--bg:#05060f;--bg2:#0f1425;--line:rgba(160,170,220,.15);--muted:#a0aadc;--panel:#0a0e1a;--acc:#7dd3fc;--ease:cubic-bezier(.22,1,.36,1)}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:#05060f;color:#e7ebf5;line-height:1.7;opacity:0;animation:fadeIn .5s ease-in forwards}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+
+    #nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,6,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+    .logo-link{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;color:#fff}
+    .logo-link img{width:34px;height:34px;object-fit:contain;display:block}
+    .logo-link:hover{opacity:.85}
+    .nav-back{padding:8px 16px;border:1px solid var(--line);border-radius:8px;color:var(--muted);font-size:14px;transition:.2s}
+    .nav-back:hover{border-color:var(--acc);color:#e7ebf5}
+
+    /* Hero */
+    #hero{min-height:46vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 28px 40px}
+    #hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+    #hero h1{font-size:clamp(38px,7vw,72px);font-weight:800;background:linear-gradient(110deg,#818cf8,#22d3ee);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:18px}
+    #hero p{font-size:18px;color:var(--muted);max-width:640px}
+
+    section{padding:56px 0}
+    .lead{font-size:19px;color:#d6ddec}
+    .prose p{margin-bottom:20px;color:#c3cadb;font-size:16.5px}
+    .kicker{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+    h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;margin-bottom:22px}
+
+    /* Stats row */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:40px 0 8px}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 20px;text-align:center}
+    .stat b{display:block;font-size:38px;font-weight:800;background:linear-gradient(110deg,#818cf8,#22d3ee);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:6px}
+    .stat span{font-size:13.5px;color:var(--muted)}
+
+    /* Approach cards */
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:8px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 24px;transition:.25s}
+    .card:hover{border-color:rgba(160,170,220,.4);transform:translateY(-3px)}
+    .card h3{font-size:17px;margin-bottom:10px;color:#eef1f8}
+    .card p{font-size:14.5px;color:var(--muted);line-height:1.65}
+
+    /* Leadership */
+    .leader{display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:center;background:linear-gradient(180deg,rgba(129,140,248,.06),rgba(34,211,238,.03));border:1px solid var(--line);border-radius:24px;padding:44px}
+    .leader-photo{width:240px;height:240px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid rgba(129,140,248,.5);box-shadow:0 0 40px rgba(34,211,238,.25);margin:0 auto;display:block}
+    .leader-name{font-size:24px;font-weight:800;margin-bottom:4px}
+    .leader-role{font-size:14px;color:var(--acc);font-weight:600;letter-spacing:.04em;margin-bottom:18px}
+    .leader blockquote{font-size:17px;line-height:1.7;color:#d6ddec;font-style:italic;border-left:3px solid rgba(34,211,238,.5);padding-left:20px}
+
+    /* CTA */
+    .cta-band{text-align:center;padding:70px 28px}
+    .cta-band h2{margin-bottom:14px}
+    .cta-band p{color:var(--muted);margin-bottom:26px}
+    .btn{display:inline-block;padding:14px 30px;border-radius:999px;background:linear-gradient(110deg,#818cf8,#22d3ee);color:#04121e;font-weight:800;font-size:15px;transition:.2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(34,211,238,.35)}
+
+    footer{border-top:1px solid var(--line);padding:30px 28px;text-align:center;color:var(--muted);font-size:13.5px}
+    footer a{color:var(--acc)}
+
+    @media(max-width:760px){
+      #nav{padding:12px 18px}
+      .stats{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .leader{grid-template-columns:1fr;text-align:center;padding:32px 22px;gap:28px}
+      .leader blockquote{border-left:0;border-top:3px solid rgba(34,211,238,.5);padding-left:0;padding-top:18px;text-align:left}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="logo-link"><img src="logo.png" alt="Viz Cloud">Viz Cloud</a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<section id="hero">
+  <span class="eyebrow">Who we are</span>
+  <h1>About Us</h1>
+  <p>A strategic technology &amp; staffing partner — founded by enterprise architects, driven by outcomes.</p>
+</section>
+
+<div class="wrap">
+
+  <section>
+    <div class="kicker">Our story</div>
+    <p class="lead">Viz Cloud Technologies was founded with a mission to serve as a strategic partner to organizations across industry verticals in need of technology expertise.</p>
+    <div class="prose" style="margin-top:20px">
+      <p>Co-founded by six Fortune 500 technology architects, we have deep technology and implementation expertise to build scalable, enterprise-level applications. With a combined 92 years of experience within our founding team, we have the vast technology experience to solve even the most complex of challenges. We love solving people's challenges and helping them achieve their technology goals.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>6</b><span>Fortune 500 co-founders</span></div>
+      <div class="stat"><b>92</b><span>Years combined expertise</span></div>
+      <div class="stat"><b>95%+</b><span>Placement retention rate</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Staffing services</div>
+    <h2>The right talent, placed to last</h2>
+    <div class="prose">
+      <p>VizCloudTech offers fully functional staffing services for contract and permanent hiring. We tailor bespoke recruitment solutions for our clients. With a proven track record of delivery and a 95%+ placement retention rate, we are firmly established as a preferred recruiting partner to a number of key employers within the USA.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Our approach</div>
+    <h2>Recruitment built on empathy &amp; trust</h2>
+    <div class="cards">
+      <div class="card"><h3>Understand first</h3><p>Effective recruitment starts with empathy between our clients and us. We first understand the context and culture in which clients and candidates work — we won't accept an assignment until we fully understand the role's purpose, position, influence, accountabilities, and what constitutes success.</p></div>
+      <div class="card"><h3>Tailored methodology</h3><p>Every assignment is unique — dictated by time, business growth, strategy, and planned succession. We choose the most appropriate methodology, one that is both detailed and expedient, yet takes significant account of each client's operating imperatives, culture, and future direction.</p></div>
+      <div class="card"><h3>Senior-led delivery</h3><p>Each assignment is personally managed by a Senior Consultant whose industry knowledge has been gained over many years — as both a senior manager and an advising consultant. A shadow consultant and a researcher reinforce the process, ensuring transparency, focus, and a satisfactory result.</p></div>
+      <div class="card"><h3>A trusted extension</h3><p>Our modus operandi is to act as an extension of the client — a trusted recruitment partner. We pride ourselves on honesty, objectivity, and dedication to the brief, communicating frequently to ensure we stay aligned. We work <em>with</em> you, not only <em>for</em> you.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Leadership</div>
+    <div class="leader">
+      <img class="leader-photo" src="raju.jpeg" alt="Raju Yarramaneni">
+      <div>
+        <div class="leader-name">Raju Yarramaneni</div>
+        <div class="leader-role">Founder, Viz Cloud Technologies</div>
+        <blockquote>We aspire to be the best example of how our services and products can transform the way work happens and create great experiences. Being our best customer helps us make all of our customers more successful. Our customers trust us to do the right thing — we live it and earn it every day. At Viz Cloud Technologies, we are passionate about helping our customers deliver great experiences and unlock productivity.</blockquote>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<section class="cta-band">
+  <h2>Let's build something great together</h2>
+  <p>Share your requirements — give us a week and we'll set the benchmark.</p>
+  <a href="index.html#contact" class="btn">Start a conversation →</a>
+</section>
+
+<footer>
+  Viz Cloud Technologies LLC · <a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a> · +1 (408) 425-0981 · 298 San Antonio Rd, Suite 300, Mountain View, CA-94040
+</footer>
+
+</body>
+</html>
