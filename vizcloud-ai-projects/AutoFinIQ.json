@@ -10,12 +10,6 @@
     "Predictive Dashboards: Power BI with ML-driven KPI forecasts, anomaly detection, and real-time refresh from Snowflake and AWS Redshift.",
     "Governance & Compliance: Full data lineage, SOX-compliant audit trails, and role-based access controls."
   ],
-  "metrics": [
-    { "label": "Reporting efficiency gain", "value": "30%" },
-    { "label": "Less manual effort", "value": "25%" },
-    { "label": "Data sources unified", "value": "8+" },
-    { "label": "Faster insight delivery", "value": "60%" }
-  ],
   "pricing": [
     { "tier": "Starter", "price": "Free", "features": "Basic ETL, dashboards, 5 pipelines" },
     { "tier": "Pro", "price": "$299/mo", "features": "Unlimited pipelines, AI insights, multi-cloud" },

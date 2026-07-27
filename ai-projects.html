@@ -95,14 +95,12 @@ async function loadProjects(){
     }
     projects.sort(function(a,b){return a.id-b.id});
     container.innerHTML=projects.map(function(p){
-      var metricsHtml=p.metrics.map(function(m){return '<div class="metric"><span class="metric-val">'+m.value+'</span><span class="metric-lab">'+m.label+'</span></div>'}).join('');
       var capsHtml=p.capabilities.slice(0,2).map(function(c){var t=c.split(':')[0];return '<li>'+t+'</li>'}).join('');
       return '<div class="pcard">'+
         '<div><div class="pcard-img"><img src="'+p.image+'" alt="'+p.name+'" /></div>'+
         '<div class="pcard-tag">AI Platform</div>'+
         '<div class="pcard-head"><h3>'+p.name+'</h3><p style="color:var(--muted);font-size:14px">'+p.tagline+'</p></div>'+
         '<p class="pcard-desc">'+p.description+'</p></div>'+
-        '<div class="pcard-metrics">'+metricsHtml+'</div>'+
         '<div class="pcard-caps"><h4>Key Capabilities</h4><ul>'+capsHtml+'</ul></div>'+
         '</div>';
     }).join('');

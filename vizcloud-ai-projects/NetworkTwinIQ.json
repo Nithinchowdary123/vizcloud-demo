@@ -10,12 +10,6 @@
     "Hybrid & Multi-Cloud: One unified model spanning branch, datacenter, and AWS / Azure / GCP.",
     "Governance & Compliance: Continuous drift detection with audit-ready evidence packages for compliance teams."
   ],
-  "metrics": [
-    { "label": "Devices modeled daily", "value": "15,000+" },
-    { "label": "Avg. annual benefit", "value": "$14.2M" },
-    { "label": "Less unplanned downtime", "value": "33%" },
-    { "label": "Network teams using", "value": "58%" }
-  ],
   "pricing": [
     { "tier": "Self-Hosted", "price": "Custom", "features": "Perpetual license, zero data egress" },
     { "tier": "Hybrid Managed", "price": "From $8K/mo", "features": "Subscription, scales with device count" },

@@ -10,12 +10,6 @@
     "CX Automation & Self-Healing: Automated remediation and proactive customer notification before tickets are raised.",
     "Customer Health Dashboard: Unified view of network health and customer satisfaction signals in one place."
   ],
-  "metrics": [
-    { "label": "Year 1 projected revenue", "value": "$750K" },
-    { "label": "Year 2 projected revenue", "value": "$3M" },
-    { "label": "Year 3 projected revenue", "value": "$8M" },
-    { "label": "Year 3 net profit", "value": "$4M" }
-  ],
   "pricing": [
     { "tier": "Starter", "price": "Free", "features": "Basic diagnostics and AI chatbot" },
     { "tier": "Pro", "price": "$199/mo", "features": "Full CX automation and integrations" },

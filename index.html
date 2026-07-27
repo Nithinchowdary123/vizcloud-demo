@@ -629,7 +629,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
         <p class="about">A strategic technology &amp; staffing partner helping ambitious companies transform, scale, and lead.</p>
       </div>
       <div class="fcol"><h4>Company</h4><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
-      <div class="fcol"><h4>Resources</h4><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="#contact">Careers</a></div>
+      <div class="fcol"><h4>Resources</h4><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="#contact" data-prefill="Hi, I'm interested in career opportunities at Viz Cloud Technologies. Here's a bit about me:">Careers</a></div>
       <div class="fcol"><h4>Get in touch</h4><a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a><a href="tel:+14084250981">+1 (408) 425-0981</a><a href="#top-anchor">298 San Antonio Rd, Suite 300, Mountain View, CA-94040</a></div>
     </div>
     <div class="fbot">
@@ -677,7 +677,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       <span class="tag" id="art-tag"></span>
       <h3 id="art-h"></h3>
       <div id="art-p"></div>
-      <a href="#contact" class="btn btn-primary art-cta">Discuss this with us →</a>
+      <a href="#contact" class="btn btn-primary art-cta" data-prefill="Hi, I'd like to discuss this topic with your team. Here's what we're looking at:">Discuss this with us →</a>
     </div>
   </div>
 </div>
@@ -751,6 +751,17 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
       .then(function(r){done();})
       .catch(function(){done();});
   });})();
+
+/* Prefill the contact message for context-specific CTAs (Careers, Discuss, etc.) */
+(function(){
+  [].forEach.call(D.querySelectorAll("[data-prefill]"),function(a){
+    a.addEventListener("click",function(){
+      var msg=D.querySelector("#cform [name=message]");
+      if(msg){msg.value=a.getAttribute("data-prefill");}
+      setTimeout(function(){if(msg){msg.focus();}},700);
+    });
+  });
+})();
 
 /* Scrollspy: highlight the nav link of the section in view */
 (function(){
