@@ -1275,6 +1275,10 @@ window.__glitch=function(h){if(R||!h)return;h.setAttribute("data-txt",h.textCont
   addEventListener("pageshow",function(){if(raf)cancelAnimationFrame(raf);running=false;ov.classList.remove("on","out");ov.setAttribute("aria-hidden","true");var lb=ov.querySelector(".ai-label");if(lb)lb.classList.remove("show");});
 })();
 
+/* Defensive reset on every page show (incl. Back/forward cache): close any open
+   article modal and unlock body scroll, so the page is never restored stuck */
+addEventListener("pageshow",function(){var art=D.getElementById("art");if(art)art.hidden=true;D.body.style.overflow="";var m=D.getElementById("menu"),bg=D.getElementById("burger");if(m)m.classList.remove("open");if(bg)bg.classList.remove("x");});
+
 })();
 </script>
 </body>

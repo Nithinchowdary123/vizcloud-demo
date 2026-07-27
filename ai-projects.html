@@ -110,6 +110,9 @@ async function loadProjects(){
   }
 }
 loadProjects();
+/* Guard: if this page is restored from the browser's back/forward cache, make sure
+   it isn't left blank at opacity:0 (the fade-in only runs on a fresh load) */
+addEventListener("pageshow",function(e){if(e.persisted)document.body.style.opacity="1";});
 </script>
 
 </body>
