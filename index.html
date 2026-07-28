@@ -603,11 +603,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 <section class="sec" id="insights" style="background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg))">
   <div class="wrap">
     <div class="head reveal"><span class="eyebrow">Insights</span><h2>Ideas worth <span class="grad">acting on</span></h2><p>Perspectives on the shifts reshaping business and technology.</p></div>
-    <div class="grid3b">
-      <article class="post reveal"><div class="thumb"><i class="p1"></i></div><div class="body"><span class="tag">AI</span><h3>Putting generative AI to work — safely</h3><p>A pragmatic framework for scaling GenAI from pilots to production value.</p><a href="#contact" class="rd">Read more →</a></div></article>
-      <article class="post reveal"><div class="thumb"><i class="p2"></i></div><div class="body"><span class="tag">Cloud</span><h3>The modern platform advantage</h3><p>Why cloud-native operating models decide who leads their category.</p><a href="#contact" class="rd">Read more →</a></div></article>
-      <article class="post reveal"><div class="thumb"><i class="p3"></i></div><div class="body"><span class="tag">Talent</span><h3>Closing critical roles, faster</h3><p>How disciplined search closes even niche positions within the first five profiles.</p><a href="#contact" class="rd">Read more →</a></div></article>
-    </div>
+    <div class="grid3b" id="insightsGrid"></div>
   </div>
 </section>
 
@@ -635,7 +631,7 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
       </div>
       <div class="fcol"><h4>Company</h4><a href="about.html">About Us</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#impact">Impact</a><a href="#industries">Industries</a></div>
       <div class="fcol"><h4>Resources</h4><a href="#insights">Insights</a><a href="#contact">Contact</a><a href="#contact" data-prefill="Hi, I'm interested in career opportunities at Viz Cloud Technologies. Here's a bit about me:">Careers</a></div>
-      <div class="fcol"><h4>Get in touch</h4><a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a><a href="tel:+14084250981">+1 (408) 425-0981</a><a href="#top-anchor">298 San Antonio Rd, Suite 300, Mountain View, CA-94040</a></div>
+      <div class="fcol"><h4>Get in touch</h4><a id="cf-email" href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a><a id="cf-phone" href="tel:+14084250981">+1 (408) 425-0981</a><a id="cf-addr" href="#top-anchor">298 San Antonio Rd, Suite 300, Mountain View, CA-94040</a></div>
     </div>
     <div class="fbot">
       <span>© <span id="yr"></span> Viz Cloud Technologies · Ready for the future</span>
@@ -718,6 +714,15 @@ footer .about{color:var(--muted);font-size:14.5px;max-width:290px}
 "use strict";
 var R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 var fine=matchMedia("(pointer:fine)").matches;
+
+/* ---- Single source of truth for company contact info (edit config.json) ---- */
+var SITE={email:"info@vizcloudtech.com",phone:"+1 (408) 425-0981",phoneDigits:"+14084250981",address:"298 San Antonio Rd, Suite 300, Mountain View, CA-94040"};
+(function(){fetch("config.json").then(function(r){return r.json();}).then(function(cfg){
+  for(var k in cfg)if(cfg[k])SITE[k]=cfg[k];
+  var em=D.getElementById("cf-email");if(em){em.textContent=SITE.email;em.href="mailto:"+SITE.email;}
+  var ph=D.getElementById("cf-phone");if(ph){ph.textContent=SITE.phone;ph.href="tel:"+(SITE.phoneDigits||SITE.phone).replace(/[^+\d]/g,"");}
+  var ad=D.getElementById("cf-addr");if(ad)ad.textContent=SITE.address;
+}).catch(function(){});})();
 var D=document;
 
 /* ---- Theme (accent) system: recolors gradients, aurora, neural, mesh ---- */
@@ -784,7 +789,7 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
   var fab=D.getElementById("bot-fab"),panel=D.getElementById("bot-panel"),body=D.getElementById("bbody"),
       chips=D.getElementById("bchips"),form=D.getElementById("bform"),input=D.getElementById("binput");
   var mode="faq",lead={},opened=false,busy=false;
-  var CONTACT="You can reach VizCloud at info@vizcloudtech.com or +1 (408) 425-0981 — 298 San Antonio Rd, Suite 300, Mountain View, CA-94040. Or use the contact form at the bottom of this page.";
+  function CONTACT(){return "You can reach VizCloud at "+SITE.email+" or "+SITE.phone+" — "+SITE.address+". Or use the contact form at the bottom of this page.";}
   function add(who,text){var m=D.createElement("div");m.className="bmsg "+who;m.textContent=text;body.appendChild(m);body.scrollTop=body.scrollHeight;return m;}
   function reply(text,cb){busy=true;var t=D.createElement("div");t.className="btyping";t.innerHTML="<i></i><i></i><i></i>";body.appendChild(t);body.scrollTop=body.scrollHeight;
     setTimeout(function(){t.remove();add("bot",text);busy=false;if(cb)cb();},R?60:520+Math.min(700,text.length*6));}
@@ -814,7 +819,7 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
     if(m(/stat|number|experience|years|expertise|founder/))return "The numbers: 92 years of combined expertise, 95%+ placement retention, 10+ years delivering, and 6 Fortune 500 co-founders.";
     if(m(/retention|track record/))return "We have a 95%+ placement retention rate and a proven track record of delivery.";
     if(m(/industr|sector|vertical/))return "We work across Financial Services, Healthcare & Life Sciences, Retail & Consumer, Manufacturing, Energy & Utilities, and the Public Sector.";
-    if(m(/contact|email|phone|call|reach|address|location|where/))return CONTACT;
+    if(m(/contact|email|phone|call|reach|address|location|where/))return CONTACT();
     if(m(/career|job|hiring|apply|vacanc|position/))return "Interested in joining VizCloud? Reach out at info@vizcloudtech.com and the team will get back to you.";
     return null;
   }
@@ -846,37 +851,44 @@ addEventListener("load",function(){setTimeout(function(){D.getElementById("pre")
     el.addEventListener("click",function(){
       var name=(el.querySelectorAll("span")[1]||el).textContent.trim();
       if(!bot.classList.contains("open"))open();
-      var tries=0;(function go(){if(busy&&tries++<40)return setTimeout(go,150);add("user",name);reply(IND[name]||("We work extensively in "+name+". "+CONTACT));})();
+      var tries=0;(function go(){if(busy&&tries++<40)return setTimeout(go,150);add("user",name);reply(IND[name]||("We work extensively in "+name+". "+CONTACT()));})();
     });
   });
 })();
 
 /* Insight cards: "Read more" opens an in-page article reader */
 (function(){
-  var art=D.getElementById("art");if(!art)return;
-  var data=[
-    {tag:"AI",h:"Putting generative AI to work — safely",cls:"p1",ps:[
-      "Most generative-AI programs stall somewhere between an impressive pilot and dependable production value. The gap is rarely the model — it's the operating discipline around it.",
-      "The approach that works: tie every use case to a business metric, ground models in your own data, and put guardrails and human review where the risk actually lives. Small, instrumented releases beat big-bang launches every time.",
-      "Done this way, AI compounds — each shipped use case builds the data, the patterns and the confidence that make the next one faster."]},
-    {tag:"Cloud",h:"The modern platform advantage",cls:"p2",ps:[
-      "Cloud stopped being an infrastructure decision a long time ago — it's an operating model. The companies that lead their categories ship faster because their platforms make the safe path the easy path.",
-      "That means cloud-native architecture, automated delivery pipelines, and platform teams that treat internal developers as customers. Resilience and cost-efficiency follow from the same design choices.",
-      "The payoff is momentum: ideas reach production in days instead of quarters, and the platform gets stronger with every release."]},
-    {tag:"Talent",h:"Closing critical roles, faster",cls:"p3",ps:[
-      "Critical roles stay open when search is treated as a volume game. Disciplined search starts by understanding the context and culture a candidate will actually work in.",
-      "That's why our benchmark is closing positions within the first five profiles — even for niche, hard-to-fill requirements. Fewer, better-matched candidates move faster through every stage.",
-      "It shows after the hire too: better matches stay. That's how a 95%+ placement retention rate gets built."]}];
+  var art=D.getElementById("art"),grid=D.getElementById("insightsGrid");if(!art)return;
+  var data=[];   /* populated from vizcloud-insights.json */
   var tagEl=D.getElementById("art-tag"),hEl=D.getElementById("art-h"),pEl=D.getElementById("art-p"),ban=art.querySelector(".art-banner i");
   function openArt(i){var a=data[i];if(!a)return;tagEl.textContent=a.tag;hEl.textContent=a.h;ban.className=a.cls;pEl.innerHTML="";
     a.ps.forEach(function(tx){var p=D.createElement("p");p.textContent=tx;pEl.appendChild(p);});
     art.hidden=false;D.body.style.overflow="hidden";}
   function closeArt(){art.hidden=true;D.body.style.overflow="";}
-  [].forEach.call(D.querySelectorAll(".post .rd"),function(a,i){a.addEventListener("click",function(e){e.preventDefault();openArt(i);});});
   art.querySelector(".art-back").addEventListener("click",closeArt);
   art.querySelector(".art-x").addEventListener("click",closeArt);
   art.querySelector(".art-cta").addEventListener("click",closeArt);
   D.addEventListener("keydown",function(e){if(e.key==="Escape"&&!art.hidden)closeArt();});
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(x){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[x];});}
+  function build(posts){
+    if(!grid||!posts||!posts.length)return;
+    data=posts.map(function(p){return {tag:p.tag,h:p.title,cls:p.thumb,ps:p.body||[]};});
+    grid.innerHTML=posts.map(function(p){return '<article class="post reveal"><div class="thumb"><i class="'+esc(p.thumb)+'"></i></div><div class="body"><span class="tag">'+esc(p.tag)+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.excerpt)+'</p><a href="#contact" class="rd">Read more &rarr;</a></div></article>';}).join("");
+    var cards=[].slice.call(grid.querySelectorAll(".post"));
+    // Read more -> open in-page article reader
+    [].forEach.call(grid.querySelectorAll(".post .rd"),function(a,i){a.addEventListener("click",function(e){e.preventDefault();openArt(i);});});
+    // scroll-reveal (same behaviour as the rest of the page)
+    if(!R&&"IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15,rootMargin:"0px 0px -8% 0px"});cards.forEach(function(el,i){el.style.transitionDelay=(i%3*0.08)+"s";io.observe(el);});}
+    else cards.forEach(function(el){el.classList.add("in");});
+    // 3D tilt + holographic sheen (desktop pointers)
+    if(fine){cards.forEach(function(c){
+      if(!R){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transition="transform 0s";c.style.transform="perspective(800px) rotateX("+(-py*5).toFixed(2)+"deg) rotateY("+(px*5).toFixed(2)+"deg) translateY(-6px)";});
+        c.addEventListener("mouseleave",function(){c.style.transition="";c.style.transform="";});}
+      var hspan=D.createElement("span");hspan.className="holo";c.appendChild(hspan);
+      c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();hspan.style.backgroundPosition=(((e.clientX-r.left)/r.width)*100).toFixed(0)+"% "+(((e.clientY-r.top)/r.height)*100).toFixed(0)+"%";});
+    });}
+  }
+  fetch("vizcloud-insights.json").then(function(r){return r.json();}).then(build).catch(function(e){if(grid)grid.innerHTML='';});
 })();
 D.getElementById("yr").textContent=new Date().getFullYear();
 

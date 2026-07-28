@@ -138,13 +138,19 @@
 </section>
 
 <footer>
-  Viz Cloud Technologies LLC · <a href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a> · +1 (408) 425-0981 · 298 San Antonio Rd, Suite 300, Mountain View, CA-94040
+  Viz Cloud Technologies LLC · <a id="cf-email" href="mailto:info@vizcloudtech.com">info@vizcloudtech.com</a> · <span id="cf-phone">+1 (408) 425-0981</span> · <span id="cf-addr">298 San Antonio Rd, Suite 300, Mountain View, CA-94040</span>
 </footer>
 
 <script>
 /* Guard: if this page is restored from the browser's back/forward cache, make sure
    it isn't left blank at opacity:0 (the fade-in only runs on a fresh load) */
 addEventListener("pageshow",function(e){if(e.persisted)document.body.style.opacity="1";});
+/* Contact info from the single source of truth (config.json) */
+fetch("config.json").then(function(r){return r.json();}).then(function(c){
+  var em=document.getElementById("cf-email");if(em&&c.email){em.textContent=c.email;em.href="mailto:"+c.email;}
+  var ph=document.getElementById("cf-phone");if(ph&&c.phone)ph.textContent=c.phone;
+  var ad=document.getElementById("cf-addr");if(ad&&c.address)ad.textContent=c.address;
+}).catch(function(){});
 </script>
 
 </body>

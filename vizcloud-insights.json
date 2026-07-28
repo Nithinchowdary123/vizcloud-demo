@@ -1,0 +1,35 @@
+[
+  {
+    "tag": "AI",
+    "title": "Putting generative AI to work — safely",
+    "excerpt": "A pragmatic framework for scaling GenAI from pilots to production value.",
+    "thumb": "p1",
+    "body": [
+      "Most generative-AI programs stall somewhere between an impressive pilot and dependable production value. The gap is rarely the model — it's the operating discipline around it.",
+      "The approach that works: tie every use case to a business metric, ground models in your own data, and put guardrails and human review where the risk actually lives. Small, instrumented releases beat big-bang launches every time.",
+      "Done this way, AI compounds — each shipped use case builds the data, the patterns and the confidence that make the next one faster."
+    ]
+  },
+  {
+    "tag": "Cloud",
+    "title": "The modern platform advantage",
+    "excerpt": "Why cloud-native operating models decide who leads their category.",
+    "thumb": "p2",
+    "body": [
+      "Cloud stopped being an infrastructure decision a long time ago — it's an operating model. The companies that lead their categories ship faster because their platforms make the safe path the easy path.",
+      "That means cloud-native architecture, automated delivery pipelines, and platform teams that treat internal developers as customers. Resilience and cost-efficiency follow from the same design choices.",
+      "The payoff is momentum: ideas reach production in days instead of quarters, and the platform gets stronger with every release."
+    ]
+  },
+  {
+    "tag": "Talent",
+    "title": "Closing critical roles, faster",
+    "excerpt": "How disciplined search closes even niche positions within the first five profiles.",
+    "thumb": "p3",
+    "body": [
+      "Critical roles stay open when search is treated as a volume game. Disciplined search starts by understanding the context and culture a candidate will actually work in.",
+      "That's why our benchmark is closing positions within the first five profiles — even for niche, hard-to-fill requirements. Fewer, better-matched candidates move faster through every stage.",
+      "It shows after the hire too: better matches stay. That's how a 95%+ placement retention rate gets built."
+    ]
+  }
+]
